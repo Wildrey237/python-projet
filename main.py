@@ -4,6 +4,7 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 from CONNECTdb import connect_BD
 
+connect_BD()
 
 app = Flask(__name__, template_folder='templates')
 app.config['SECRET_KEY'] = 'C2HWGVoMGfNTBsrYQg8EcMrdTimkZfAb'
