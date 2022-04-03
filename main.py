@@ -21,7 +21,7 @@ def test():
 # Page d'ajout d'une entreprise dans la BDD
 @app.route('/ajout-entreprise', methods=['GET', 'POST'])
 def creation_entreprise():
-    return Entreprise(id, Nom, Siret, Adresse, Code, Ville, Description, URL)
+    return session_verification(Entreprise(id, Nom, Siret, Adresse, Code, Ville, Description, URL))
 
 
 if __name__ == '__main__':

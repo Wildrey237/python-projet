@@ -1,6 +1,5 @@
 from flask import render_template
-import firebase_admin
-from firebase_admin import credentials, firestore
+
 from connexion import db
 
 

@@ -1,5 +1,5 @@
 import time
-from flask import session, redirect, url_for, render_template
+from flask import session, redirect, url_for
 
 
 def session_verification(maPage):
