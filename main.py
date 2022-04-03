@@ -1,5 +1,5 @@
 from flask import Flask, session, redirect, request, url_for, render_template, flash
-from CreateMethod import createEntreprise
+from CreateMethod import Entreprise
 from connexion import connexion
 
 
@@ -16,7 +16,7 @@ def connexion_test():
 # Page d'ajout d'une entreprise dans la BDD
 @app.route('/ajout-entreprise', methods=['GET', 'POST'])
 def creation_entreprise():
-    return createEntreprise
+    return Entreprise(id, Nom, Siret, Adresse, Code, Ville, Description, URL)
 
 
 if __name__ == '__main__':

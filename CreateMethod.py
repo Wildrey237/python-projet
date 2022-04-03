@@ -3,30 +3,47 @@ from formulaires import FormulaireCreationEntreprise
 from connexion import db
 
 
-# Create data in db - cette méthode ajoute une entreprise
-def createEntreprise():
-    creation_entreprise = FormulaireCreationEntreprise
-    if creation_entreprise.validate_on_submit():
-        Nom = request.form['Nom']
-        Siret = request.form['Siret']
-        Adresse = request.form['Adresse']
-        Code = request.form['Code']
-        Ville = request.form['Ville']
-        Description = request.form['Description']
-        URl = request.form['URL']
-        query = db.collection('Entreprise').add(
-            {
-                'Nom': Nom,
-                'Siret': Siret,
-                'Adresse': Adresse,
-                'Code': Code,
-                'Ville': Ville,
-                'Description': Description,
-                'URL': URl
-            }
-        )
-        print(query)
-    return render_template('creationEntreprise.html', creation_entreprise=creation_entreprise)
+class Entreprise(object):
+
+    def __init__(self, id, Nom, Siret, Adresse, Code, Ville, Description, URL):
+        self.id = id
+        self.nom = Nom
+        self.siret = Siret
+        self.adresse = Adresse
+        self.code = Code
+        self.ville = Ville
+        self.description = Description
+        self.url = URL
+
+    def createEntreprise(self):
+        creation_entreprise = FormulaireCreationEntreprise
+        if creation_entreprise.validate_on_submit():
+            Nom = request.form['Nom']
+            Siret = request.form['Siret']
+            Adresse = request.form['Adresse']
+            Code = request.form['Code']
+            Ville = request.form['Ville']
+            Description = request.form['Description']
+            URl = request.form['URL']
+            query = db.collection('Entreprise').add(
+                {
+                    'Nom': Nom,
+                    'Siret': Siret,
+                    'Adresse': Adresse,
+                    'Code': Code,
+                    'Ville': Ville,
+                    'Description': Description,
+                    'URL': URl
+                }
+            )
+            print(query)
+        return render_template('creationEntreprise.html', creation_entreprise=creation_entreprise)
+
+
+
+
+
+
 
 # Create data in db - cette méthode fonctionne pour ajouter un client
 # def createClient():
