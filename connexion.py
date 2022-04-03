@@ -8,16 +8,16 @@ def connexion():
     connexion_formulaire = ConnexionFormulaire()
     db = firestore.client()
     if connexion_formulaire.validate_on_submit():
-        email = request.form['email']
-        mdp = request.form['mdp']
-        users_ref = db.collection(u'test').where(u'nom', u'==', email)
+        Email = request.form['Email']
+        Password = request.form['Password']
+        users_ref = db.collection(u'Users').where(u'Email', u'==', Email)
         docs = users_ref.get()
         for doc in docs:
             test = doc.to_dict()
-        if test["mdp"] == f'{mdp}':
-            print('bv')
-        else:
-            return redirect(url_for('connexion_test'))
+            if test["Password"] == f'{Password}':
+                print('bv')
+            else:
+                return redirect(url_for('connexion_test'))
     return render_template('connexion.html', connexion_formulaire=connexion_formulaire)
 
 

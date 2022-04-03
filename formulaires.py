@@ -4,5 +4,5 @@ from wtforms.validators import DataRequired
 
 
 class ConnexionFormulaire(FlaskForm):
-    email = EmailField(validators=[DataRequired()])
-    mdp = PasswordField(validators=[DataRequired()])
+    Email = EmailField(validators=[DataRequired()])
+    Password = PasswordField(validators=[DataRequired()])
