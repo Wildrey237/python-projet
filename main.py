@@ -1,7 +1,9 @@
 from flask import Flask, session, redirect, request, url_for, render_template, flash
-import firebase_admin
 from CreateMethod import createEntreprise
 from connexion import connexion
+from CONNECTdb import connect_BD
+
+db = connect_BD()
 
 app = Flask(__name__, template_folder='templates')
 app.config['SECRET_KEY'] = 'C2HWGVoMGfNTBsrYQg8EcMrdTimkZfAb'
@@ -16,7 +18,7 @@ def connexion_test():
 # Page d'ajout d'une entreprise dans la BDD
 @app.route('/ajout-entreprise', methods=['GET', 'POST'])
 def creation_entreprise():
-    return createEntreprise()
+    return createEntreprise
 
 
 if __name__ == '__main__':

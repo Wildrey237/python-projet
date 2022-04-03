@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, DateField, EmailField, IntegerField, DecimalField
+from wtforms import StringField, PasswordField, DateField, EmailField, IntegerField, DecimalField, TextAreaField
 from wtforms.validators import DataRequired
 
 
@@ -14,5 +14,5 @@ class FormulaireCreationEntreprise(FlaskForm):
     Adresse = StringField(validators=[DataRequired()])
     Code = IntegerField(validators=[DataRequired()])
     Ville = StringField(validators=[DataRequired()])
-    Description = StringField
+    Description = TextAreaField
     URL = StringField
