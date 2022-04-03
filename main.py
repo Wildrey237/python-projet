@@ -1,9 +1,7 @@
 from flask import Flask, session, redirect, request, url_for, render_template, flash
 from CreateMethod import createEntreprise
 from connexion import connexion
-from CONNECTdb import connect_BD
 
-db = connect_BD()
 
 app = Flask(__name__, template_folder='templates')
 app.config['SECRET_KEY'] = 'C2HWGVoMGfNTBsrYQg8EcMrdTimkZfAb'

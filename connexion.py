@@ -1,12 +1,11 @@
+from flask import redirect, request, url_for, render_template
 from formulaires import ConnexionFormulaire
-from flask import Flask, session, redirect, request, url_for, render_template, flash
-import firebase_admin
-from firebase_admin import credentials, firestore
+from CONNECTdb import connect_BD
 
+db = connect_BD()
 
 def connexion():
     connexion_formulaire = ConnexionFormulaire()
-    db = firestore.client()
     if connexion_formulaire.validate_on_submit():
         Email = request.form['Email']
         Password = request.form['Password']
@@ -19,6 +18,3 @@ def connexion():
             else:
                 return redirect(url_for('connexion_test'))
     return render_template('connexion.html', connexion_formulaire=connexion_formulaire)
-
-
-
