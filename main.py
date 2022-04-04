@@ -2,12 +2,12 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 from flask import Flask
 
-from CreateMethod import *
-from connexion import connexion
+from Entreprise import makeEntreprise
+from Connexion import connexion
 from Client import makeClient
-from session import session_verification
-from test import page_test
-from makefacture import MakeFacture
+from Session import session_verification
+from Test import page_test
+from MakeFacture import MakeFacture
 
 app = Flask(__name__, template_folder='templates')
 app.config['SECRET_KEY'] = 'C2HWGVoMGfNTBsrYQg8EcMrdTimkZfAb'

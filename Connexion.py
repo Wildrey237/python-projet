@@ -15,7 +15,7 @@ def connexion():
         for doc in docs:
             test = doc.to_dict()
             if test["Password"] == f'{Password}':
-                session['duree'] = time.time() + 3600 # Durée en seconde de la session
+                session['duree'] = time.time() + 30  # Durée en seconde de la session
                 print('bv')
                 return redirect(url_for('test'))
             else:

@@ -1,8 +1,8 @@
 from urllib import request
 
 from flask import render_template, request
-from formulaires import FormulaireCreationClient
-from connexion import db
+from Formulaires import FormulaireCreationClient
+from Connexion import db
 
 
 class Client:
