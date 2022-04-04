@@ -1,4 +1,6 @@
-from flask import request, render_template
+from flask import request, render_template, url_for
+from werkzeug.utils import redirect
+
 from Connexion import db
 from Formulaires import FormulaireCreationEntreprise
 
@@ -13,18 +15,30 @@ def makeEntreprise():
         Ville = request.form.get('Ville')
         Description = request.form.get('Description')
         URL = request.form.get('URL')
-        db.collection('Entreprise').add(
-            {
-                'Nom': Nom,
-                'Siret': Siret,
-                'Adresse': Adresse,
-                'Code': Code,
-                'Ville': Ville,
-                'Description': Description,
-                'URL': URL,
-            }
-        )
+
+        ent_refs = db.collection('Entreprise').where('Siret', '==', Siret)
+        refs = ent_refs.get()
+
+        if refs:
+            for ref in refs:
+                check = ref.to_dict()
+                if check['Siret'] == Siret:
+                    return redirect(url_for('test'))
+        else:
+            db.collection('Entreprise').add(
+                {
+                    'Nom': Nom,
+                    'Siret': Siret,
+                    'Adresse': Adresse,
+                    'Code': Code,
+                    'Ville': Ville,
+                    'Description': Description,
+                    'URL': URL,
+                }
+            )
+        return redirect(url_for('test'))
     return render_template('creationEntreprise.html', creation_entreprise=creation_entreprise)
+
 
 def modifyEntreprise(Siret):
     informations_entreprise = []
