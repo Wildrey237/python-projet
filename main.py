@@ -26,7 +26,7 @@ def test():
 def ajoutEntreprise():
     return session_verification(makeEntreprise)
 
-@app.route('/')
+@app.route('/facture')
 def Facture():
     return MakeFacture()
 
