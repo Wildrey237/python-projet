@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for
-from formulaires import FormulaireAccesEntreprise
-from connexion import db
+from Formulaires import FormulaireAccesEntreprise
+from Connexion import db
 
 
 def page_test():
