@@ -1,6 +1,6 @@
 from flask import redirect, request, url_for, render_template, session
-from formulaires import ConnexionFormulaire
-from CONNECTdb import connect_BD
+from Formulaires import ConnexionFormulaire
+from ConnectDb import connect_BD
 import time
 
 db = connect_BD()

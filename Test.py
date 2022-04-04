@@ -1,6 +1,6 @@
 from flask import render_template
 
-from connexion import db
+from Connexion import db
 
 
 def page_test():
