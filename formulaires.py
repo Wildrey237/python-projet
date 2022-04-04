@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, EmailField, IntegerField, TextAreaField, BooleanField
+from wtforms import StringField, PasswordField, EmailField, IntegerField, TextAreaField, BooleanField, SubmitField
 from wtforms.validators import DataRequired
 
 
@@ -26,3 +26,7 @@ class FormulaireCreationClient(FlaskForm):
     Poste = StringField(validators=[DataRequired()])
     Statut = BooleanField(validators=[DataRequired()])
     Telephone = IntegerField(validators=[DataRequired()])
+
+
+class FormulaireAccesEntreprise(FlaskForm):
+    Siret = SubmitField()

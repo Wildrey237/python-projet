@@ -3,6 +3,12 @@ from flask import request, render_template
 from connexion import db
 from formulaires import FormulaireCreationEntreprise
 
+def ModifyEntreprise(Siret):
+    docs = db.collection('Entreprise').where(u'Siret', u'==', Siret)
+    docs = users_ref.get()
+    for doc in docs:
+        test = doc.to_dict()
+
 
 def makeEntreprise():
     creation_entreprise = FormulaireCreationEntreprise()
