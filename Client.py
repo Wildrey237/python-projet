@@ -1,3 +1,7 @@
+from urllib import request
+
+from flask import render_template, request
+from formulaires import FormulaireCreationClient
 from connexion import db
 
 
@@ -30,3 +34,27 @@ class Client:
         self.poste = Poste
         self.statut = Statut
         self.telephone = Telephone
+
+
+def makeClient():
+    creation_client = FormulaireCreationClient()
+    if creation_client.validate_on_submit():
+        Nom = request.form.get('Nom')
+        Prenom = request.form.get('Prenom')
+        Email = request.form.get('Email')
+        Entreprise = request.form.get('Entreprise')
+        Poste = request.form.get('Poste')
+        Statut = request.form.get('Statut')
+        Telephone = request.form.get('Telephone')
+        db.collection('Client').add(
+            {
+                'Nom': Nom,
+                'Prenom': Prenom,
+                'Email': Email,
+                'Entreprise': Entreprise,
+                'Poste': Poste,
+                'Statut': Statut,
+                'Telephone': Telephone,
+            }
+        )
+    return render_template('creationClient.html', creation_client=creation_client)

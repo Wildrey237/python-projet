@@ -4,7 +4,7 @@ from flask import Flask
 
 from CreateMethod import *
 from connexion import connexion
-
+from Client import makeClient
 from session import session_verification
 from test import page_test
 from makefacture import MakeFacture
@@ -29,6 +29,12 @@ def test():
 @app.route('/ajout-entreprise', methods=['GET', 'POST'])
 def ajoutEntreprise():
     return session_verification(makeEntreprise())
+
+
+# Page d'ajout d'un client dans la BDD
+@app.route('/ajout-client', methods=['GET', 'POST'])
+def ajoutClient():
+    return session_verification(makeClient())
 
 
 @app.route('/facture/<Email>', methods=['GET', 'POST'])

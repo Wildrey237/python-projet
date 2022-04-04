@@ -1,0 +1,15 @@
+{% block title %}{{title}}{% endblock %}
+
+{% block content %}
+<form method="POST">
+    {{ creation_client.csrf_token }}
+    {{ creation_client.Nom }}
+    {{ creation_client.Prenom }}
+    {{ creation_client.Email }}
+    {{ creation_client.Entreprise }}
+    {{ creation_client.Poste }}
+    {{ creation_client.Statut }}
+    {{ creation_client.Telephone }}
+    <input type="submit">
+</form>
+{% endblock %}
