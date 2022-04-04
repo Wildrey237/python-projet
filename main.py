@@ -1,9 +1,9 @@
 from flask import Flask
-
 from CreateMethod import *
 from connexion import connexion
 from session import session_verification
 from test import page_test
+from makefacture import MakeFacture
 
 app = Flask(__name__, template_folder='templates')
 app.config['SECRET_KEY'] = 'C2HWGVoMGfNTBsrYQg8EcMrdTimkZfAb'
@@ -13,6 +13,7 @@ app.config['SECRET_KEY'] = 'C2HWGVoMGfNTBsrYQg8EcMrdTimkZfAb'
 @app.route('/connexion', methods=['GET', 'POST'])
 def connexion_test():
     return connexion()
+
 
 # Page de test pour les variables de sessions de 60 minutes
 @app.route('/test')
@@ -24,6 +25,10 @@ def test():
 @app.route('/ajout-entreprise', methods=['GET', 'POST'])
 def ajoutEntreprise():
     return session_verification(makeEntreprise)
+
+@app.route('/')
+def Facture():
+    return MakeFacture()
 
 
 if __name__ == '__main__':
