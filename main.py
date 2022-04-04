@@ -1,6 +1,10 @@
+import firebase_admin
+from firebase_admin import credentials, firestore
 from flask import Flask
+
 from CreateMethod import *
 from connexion import connexion
+
 from session import session_verification
 from test import page_test
 from makefacture import MakeFacture
@@ -24,9 +28,10 @@ def test():
 # Page d'ajout d'une entreprise dans la BDD
 @app.route('/ajout-entreprise', methods=['GET', 'POST'])
 def ajoutEntreprise():
-    return session_verification(makeEntreprise)
+    return session_verification(makeEntreprise())
 
-@app.route('/facture')
+
+@app.route('/facture', methods=['GET', 'POST'])
 def Facture():
     return MakeFacture()
 

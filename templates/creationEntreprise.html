@@ -2,7 +2,6 @@
 
 {% block content %}
 <form method="POST">
-    {{ creation_entreprise() }}
     {{ creation_entreprise.csrf_token }}
     {{ creation_entreprise.Nom }}
     {{ creation_entreprise.Siret }}

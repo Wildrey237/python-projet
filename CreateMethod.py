@@ -12,7 +12,7 @@ def makeEntreprise():
         Adresse = request.form.get('Adresse')
         Code = request.form.get('Code')
         Ville = request.form.get('Ville')
-        db.collection('Entreprise').push(
+        db.collection('Entreprise').add(
             {
                 'Nom': Nom,
                 'Siret': Siret,
@@ -21,7 +21,7 @@ def makeEntreprise():
                 'Ville': Ville,
             }
         )
-    return render_template('creationEntreprise.html', form=creation_entreprise)
+    return render_template('creationEntreprise.html', creation_entreprise=creation_entreprise)
 
 
 class Entreprise(object):
