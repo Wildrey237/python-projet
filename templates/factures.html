@@ -1,0 +1,52 @@
+{% extends 'basefacture.html' %}
+
+{% block title %}  {{ title }}  {% endblock %}
+
+
+{% block content %}
+    <div>
+        <header>
+            <h1>FACTURE
+              <h2>La jolie boite à code</h2>
+            </h1>
+          </header>
+        <section class="flex">
+            <dl>
+              <dt>Facture #</dt>
+              <dd>20140603</dd>
+              <dt>Date de facturation</dt>
+              <dd>{{facture[0]}}</dd>
+            </dl>
+          </section>
+        <section class="flex">
+            <dl class="bloc">
+              <dt>Facturé à:</dt>
+              <dd>
+                Company X &amp; Son Inc.<br>
+                2789 Some street,<br>
+                Big City, Québec, J3X 1J1
+                <dl>
+                  <dt>Attn</dt>
+                  <dd>{{users[0]}} {{users[1]}} </dd>
+                  <dt>Téléphone</dt>
+                  <dd>{{users[4]}}</dd>
+                  <dt>Courriel</dt>
+                  <dd>{{users[2]}}</dd>
+                </dl>
+              </dd>
+            </dl>
+            <dl class="bloc">
+              <dt>Description de service:</dt>
+              <dd>Développement AIR</dd>
+              <dt>Période totale:</dt>
+              <dd>24 Mai au 2 Juin 2014</dd>
+            </dl>
+        </section>
+        <footer>
+        <p>Moi – Informatique − Développement WEB | <a href="http://joseroux.com">joseroux.com</a></p>
+        <p>1777 some street in the woods, Wentworth-Nord, Qc, J0T 1Y0 | Tél. 450-555-1000 | <a href="mailto:mail@me.com">mail@me.com</a></p>
+        </footer>
+    </div>
+
+</div>
+{% endblock %}
