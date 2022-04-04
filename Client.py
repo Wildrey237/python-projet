@@ -1,8 +1,8 @@
-from CONNECTdb import connect_BD
+from connexion import db
+
 
 class Client:
     def Takeclient(self, Email: str = None):
-        db = connect_BD()
         if Email is None:
             docs = db.collection('Client')
         else:

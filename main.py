@@ -31,9 +31,9 @@ def ajoutEntreprise():
     return session_verification(makeEntreprise())
 
 
-@app.route('/facture', methods=['GET', 'POST'])
-def Facture():
-    return MakeFacture()
+@app.route('/facture/<Email>', methods=['GET', 'POST'])
+def Facture(Email):
+    return MakeFacture(Email)
 
 
 if __name__ == '__main__':

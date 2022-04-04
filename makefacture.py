@@ -17,7 +17,7 @@ def InfoFacture():
     return facture
 
 
-def MakeFacture():
-    user = TakeClient('erwann.duclos@epsi.fr')
+def MakeFacture(Email):
+    user = TakeClient(Email)
     facture = InfoFacture()
     return render_template('factures.html', users=user, facture=facture)
