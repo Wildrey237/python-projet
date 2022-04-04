@@ -11,3 +11,4 @@ def page_test():
         testt = r.to_dict()
         t2.append(testt)
     return render_template('test.html', liste_client=t2)
+
