@@ -5,6 +5,7 @@ import time
 
 db = connect_BD()
 
+
 def connexion():
     connexion_formulaire = ConnexionFormulaire()
     if connexion_formulaire.validate_on_submit():
@@ -15,9 +16,9 @@ def connexion():
         for doc in docs:
             test = doc.to_dict()
             if test["Password"] == f'{Password}':
-                session['duree'] = time.time() + 30  # Durée en seconde de la session
+                session['duree'] = time.time() + 3600  # Durée en seconde de la session
                 print('bv')
-                return redirect(url_for('test'))
+                return redirect(url_for('ajoutEntreprise'))  # Mettre la page d'acceuil ici
             else:
                 return redirect(url_for('connexion_test'))
     return render_template('connexion.html', connexion_formulaire=connexion_formulaire)
