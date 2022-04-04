@@ -2,7 +2,7 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 from flask import Flask
 
-from Entreprise import makeEntreprise
+from Entreprise import makeEntreprise, modifyEntreprise
 from Connexion import connexion
 from Client import makeClient
 from Session import session_verification
@@ -20,7 +20,7 @@ def connexion_test():
 
 
 # Page de test pour les variables de sessions de 60 minutes
-@app.route('/test')
+@app.route('/test', methods=['GET', 'POST'])
 def test():
     return session_verification(page_test())
 
@@ -29,6 +29,10 @@ def test():
 @app.route('/ajout-entreprise', methods=['GET', 'POST'])
 def ajoutEntreprise():
     return session_verification(makeEntreprise())
+
+@app.route('/Entreprise/<siret>')
+def entrerpise(siret):
+    return session_verification(modifyEntreprise(siret))
 
 
 # Page d'ajout d'un client dans la BDD

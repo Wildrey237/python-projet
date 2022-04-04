@@ -26,6 +26,15 @@ def makeEntreprise():
         )
     return render_template('creationEntreprise.html', creation_entreprise=creation_entreprise)
 
+def modifyEntreprise(Siret):
+    informations_entreprise = []
+    users_ref = db.collection(u'Entreprise').where(u'Siret', u'==', Siret)
+    docs = users_ref.get()
+    for doc in docs:
+        test = doc.to_dict()
+    informations_entreprise.append(test)
+    return render_template('entreprise.html', informations_entreprise=informations_entreprise)
+
 
 class Entreprise(object):
 
