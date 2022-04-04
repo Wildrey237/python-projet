@@ -14,5 +14,5 @@ class FormulaireCreationEntreprise(FlaskForm):
     Adresse = StringField(validators=[DataRequired()])
     Code = IntegerField(validators=[DataRequired()])
     Ville = StringField(validators=[DataRequired()])
-    Description = TextAreaField
-    URL  = StringField
+    Description = TextAreaField()
+    URL  = StringField()
