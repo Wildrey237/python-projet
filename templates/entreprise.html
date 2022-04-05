@@ -3,42 +3,44 @@
 <body>
     <div class="h-100 d-flex align-items-start">
         <div class="container w-25 h-50">
-{% for information in informations_entreprise %}
 <form method="post">
     {{ formulaire_modification_entreprise.csrf_token}}
     <div class="mb-3">
         <label for="Nom" class="form-label "> Nom :</label>
-{{  formulaire_modification_entreprise.Nom(value=information.Nom, class_="form-control" ) }}
+{{  formulaire_modification_entreprise.Nom(value=informations_entreprise.Nom, class_="form-control" ) }}
     </div>
     <div class="mb-3">
         <label for="Siret" class="form-label "> Siret :</label>
-{{  formulaire_modification_entreprise.Siret(value=information.Siret, class_="form-control" ) }}
+{{  formulaire_modification_entreprise.Siret(value=informations_entreprise.Siret, class_="form-control" ) }}
     </div>
     <div class="mb-3">
         <label for="Adresse" class="form-label"> Adresse :</label>
-{{  formulaire_modification_entreprise.Adresse(value=information.Adresse, class_="form-control") }}
+{{  formulaire_modification_entreprise.Adresse(value=informations_entreprise.Adresse, class_="form-control") }}
     </div>
     <div class="mb-3">
         <label for="Code" class="form-label "> Code :</label>
-{{  formulaire_modification_entreprise.Code(value=information.Code, class_="form-control") }}
+{{  formulaire_modification_entreprise.Code(value=informations_entreprise.Code, class_="form-control") }}
     </div>
 <div class="mb-3">
     <label for="Ville" class="form-label "> Ville :</label>
-{{  formulaire_modification_entreprise.Ville(value=information.Ville, class_="form-control") }}
+{{  formulaire_modification_entreprise.Ville(value=informations_entreprise.Ville, class_="form-control") }}
 </div>
 <div class="mb-3">
     <label for="Description" class="form-label "> Description :</label>
-{{  formulaire_modification_entreprise.Description(value=information.Description, class_="form-control") }}
+{{  formulaire_modification_entreprise.Description(value=informations_entreprise.Description, class_="form-control") }}
 </div>
 <div class="mb-3">
     <label for="URL" class="form-label "> URL :</label>
-{{  formulaire_modification_entreprise.URL(value=information.URL, class_="form-control") }}
+{{  formulaire_modification_entreprise.URL(value=informations_entreprise.URL, class_="form-control") }}
 </div>
 <div class="mb-3">
     <input type="submit" class="btn btn-primary">
     </div>
 </form>
+        </div>
+    </div>
+
+{% for contact in informations_contact %}
+    {{ contact.Nom }}
 {% endfor %}
-</div>
-</div>
 </body>

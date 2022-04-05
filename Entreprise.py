@@ -41,13 +41,22 @@ def makeEntreprise():
 
 
 def modifyEntreprise(Siret):
-    informations_entreprise = []
+    Siret = int(Siret)
     users_ref = db.collection(u'Entreprise').where(u'Siret', u'==', Siret)
     docs = users_ref.get()
     for doc in docs:
-        test = doc.to_dict()
-    informations_entreprise.append(test)
-    return render_template('entreprise.html', informations_entreprise=informations_entreprise)
+        informations_entreprise = doc.to_dict()
+    informations_contact = []
+    contact_ref = db.collection(u'Client').where(u'Entreprise', u'==', informations_entreprise['Nom'])
+    contacts = contact_ref.get()
+    for contact in contacts:
+        tt = contact.to_dict()
+        informations_contact.append(tt)
+
+    formulaire_modification_entreprise = FormulaireCreationEntreprise()
+    return render_template('entreprise.html', informations_entreprise=informations_entreprise,
+                           formulaire_modification_entreprise=formulaire_modification_entreprise,
+                           informations_contact=informations_contact)
 
 
 class Entreprise():
