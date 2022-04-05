@@ -2,7 +2,7 @@ from flask import request, render_template, url_for
 from werkzeug.utils import redirect
 
 from Connexion import db
-from Formulaires import FormulaireCreationEntreprise
+from Formulaires import FormulaireCreationEntreprise, FormulaireFacture
 
 
 def makeEntreprise():
@@ -54,9 +54,47 @@ def modifyEntreprise(Siret):
         informations_contact.append(tt)
 
     formulaire_modification_entreprise = FormulaireCreationEntreprise()
+    formulaire_facture = FormulaireFacture()
+    if formulaire_modification_entreprise.validate_on_submit():
+        Nom = request.form.get('Nom')
+        Siret = request.form.get('Siret')
+        Adresse = request.form.get('Adresse')
+        Code = request.form.get('Code')
+        Ville = request.form.get('Ville')
+        Description = request.form.get('Description')
+        URL = request.form.get('URL')
+        Siret = int(Siret)
+        ref_entreprise = db.collection('Entreprise').where(u'Siret', u'==', Siret)
+        docs = ref_entreprise.get()
+        for doc in docs:
+            id = doc.id
+        if request.form['valider'] == 'Modifier':
+            db.collection('Entreprise').document(id).set(
+                {
+                    'Nom': Nom,
+                    'Siret': Siret,
+                    'Adresse': Adresse,
+                    'Code': Code,
+                    'Ville': Ville,
+                    'Description': Description,
+                    'URL': URL,
+                }
+            )
+        elif request.form['valider'] == 'Supprimer':
+            db.collection('Entreprise').document(id).delete()
+            return redirect(url_for('test'))
+    elif formulaire_facture.validate_on_submit():
+        Email = request.form.get('Email')
+        if request.form['contact'] == 'Acceder':
+            return redirect(url_for('test'))
+        elif request.form['contact'] == 'Visualiser facture':
+            return redirect(url_for('connexion_test'))
+        elif request.form['contact'] == 'Creer facture':
+            return redirect(url_for('test'))
+
     return render_template('entreprise.html', informations_entreprise=informations_entreprise,
                            formulaire_modification_entreprise=formulaire_modification_entreprise,
-                           informations_contact=informations_contact)
+                           informations_contact=informations_contact, formulaire_facture=formulaire_facture)
 
 
 class Entreprise():

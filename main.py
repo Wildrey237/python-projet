@@ -30,7 +30,7 @@ def ajoutEntreprise():
     return session_verification(makeEntreprise())
 
 
-@app.route('/Entreprise/<siret>')
+@app.route('/Entreprise/<siret>', methods=['GET', 'POST'])
 def entreprise(siret):
     return session_verification(modifyEntreprise(siret))
 

@@ -21,6 +21,9 @@ class FormulaireCreationEntreprise(FlaskForm):
 class FormulaireAccesEntreprise(FlaskForm):
     Siret = SubmitField()
 
+class FormulaireFacture(FlaskForm):
+    Email = EmailField()
+
 
 class FormulaireAjoutCommentaire(FlaskForm):
     nom = StringField()
