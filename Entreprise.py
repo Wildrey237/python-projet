@@ -47,7 +47,8 @@ def modifyEntreprise(Siret):
     for doc in docs:
         test = doc.to_dict()
     informations_entreprise.append(test)
-    return render_template('entreprise.html', informations_entreprise=informations_entreprise)
+    formulaire_modification_entreprise = FormulaireCreationEntreprise()
+    return render_template('entreprise.html', informations_entreprise=informations_entreprise, formulaire_modification_entreprise=formulaire_modification_entreprise)
 
 
 class Entreprise(object):

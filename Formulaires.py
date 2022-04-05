@@ -30,3 +30,6 @@ class FormulaireCreationClient(FlaskForm):
 
 class FormulaireAccesEntreprise(FlaskForm):
     Siret = SubmitField()
+
+
+
