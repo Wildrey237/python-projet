@@ -5,8 +5,10 @@ import time
 
 db = connect_BD()
 
+
 def connexion():
     connexion_formulaire = ConnexionFormulaire()
+    result = render_template('connexion.html', connexion_formulaire=connexion_formulaire)
     if connexion_formulaire.validate_on_submit():
         Email = request.form['Email']
         Password = request.form['Password']
@@ -17,7 +19,7 @@ def connexion():
             if test["Password"] == f'{Password}':
                 session['duree'] = time.time() + 3600  # Durée en seconde de la session
                 print('bv')
-                return redirect(url_for('test'))
+                result = redirect(url_for('test'))
             else:
-                return redirect(url_for('connexion_test'))
-    return render_template('connexion.html', connexion_formulaire=connexion_formulaire)
+                result = redirect(url_for('connexion_test'))
+    return result

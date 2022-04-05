@@ -20,13 +20,14 @@ def TakeEntreprise(info):
 
 def InfoFacture():
     date = datetime.now()
+    id = str(date.strftime("%Y%m%d"))
     date = str(date.strftime("%Y-%m-%d %H:%M:%S"))
-    facture = [date]
+    facture = [date, id]
     return facture
 
 
-def MakeFacture(Email):
-    user = TakeClient(Email)
+def MakeFacture(Email_contact, Siret):
+    user = TakeClient(Email_contact)
     facture = InfoFacture()
-    entreprise = TakeEntreprise(1)
+    entreprise = TakeEntreprise(Siret)
     return render_template('factures.html', users=user, facture=facture, entreprise = entreprise)

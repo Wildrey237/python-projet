@@ -6,11 +6,11 @@ from Connexion import db
 
 
 class Client:
-    def Takeclient(self, Email: str = None):
-        if Email is None:
+    def Takeclient(self, Email_contact: str = None):
+        if Email_contact is None:
             docs = db.collection('Client')
         else:
-            docs = db.collection('Client').where(u'Email', u'==', Email)
+            docs = db.collection('Client').where(u'Email', u'==', Email_contact)
         docs = docs.get()
         user = []
         for doc in docs:

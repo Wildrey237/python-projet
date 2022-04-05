@@ -11,8 +11,9 @@ def page_test():
         entreprise_todict = entreprise.to_dict()
         liste_entreprise.append(entreprise_todict)
     formulaire_acces_entreprise = FormulaireAccesEntreprise()
+    result = render_template('test.html', liste_entreprise=liste_entreprise,formulaire_acces_entreprise=formulaire_acces_entreprise)
     if formulaire_acces_entreprise.validate_on_submit():
         Siret = request.form['Siret']
-        return redirect(f'/Entreprise/{Siret}')
-    return render_template('test.html', liste_entreprise=liste_entreprise, formulaire_acces_entreprise=formulaire_acces_entreprise)
+        result = redirect(f'/Entreprise/{Siret}')
+    return result
 

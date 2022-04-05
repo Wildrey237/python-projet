@@ -42,9 +42,11 @@ def ajoutClient():
     return session_verification(makeClient())
 
 
-@app.route('/facture/<Email>', methods=['GET', 'POST'])
-def Facture(Email):
-    return MakeFacture(Email)
+@app.route('/facture', methods=['GET', 'POST'])
+def Facture():
+    Email_contact = "hello"
+    Siret = 1
+    return MakeFacture(Email_contact, Siret)
 
 
 if __name__ == '__main__':
