@@ -1,8 +1,7 @@
 import datetime
 
-from flask import request, render_template, url_for
-from werkzeug.utils import redirect
-import time
+from flask import request, render_template
+
 from Connexion import db
 from Formulaires import FormulaireAjoutCommentaire
 
