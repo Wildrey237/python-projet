@@ -8,6 +8,7 @@ from Client import makeClient
 from Session import session_verification
 from Test import page_test
 from MakeFacture import makeFacture
+from Commentaire import makeCommentaire
 
 app = Flask(__name__, template_folder='templates')
 app.config['SECRET_KEY'] = 'C2HWGVoMGfNTBsrYQg8EcMrdTimkZfAb'
@@ -40,6 +41,12 @@ def entreprise(siret):
 @app.route('/ajout-client', methods=['GET', 'POST'])
 def ajoutClient():
     return session_verification(makeClient())
+
+
+# Page d'ajout de commentaire sur un client (personne physique) existant
+@app.route('/ajout-commentaire/<telephone>', methods=['GET', 'POST'])
+def ajoutCommentaire(telephone):
+    return session_verification(makeCommentaire(telephone))
 
 
 @app.route('/facture', methods=['GET', 'POST'])

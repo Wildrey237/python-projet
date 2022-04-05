@@ -1,6 +1,8 @@
 from urllib import request
 
-from flask import render_template, request
+from flask import render_template, request, url_for
+from werkzeug.utils import redirect
+
 from Formulaires import FormulaireCreationClient
 from Connexion import db
 
@@ -46,15 +48,26 @@ def makeClient():
         Poste = request.form.get('Poste')
         Statut = request.form.get('Statut')
         Telephone = request.form.get('Telephone')
-        db.collection('Client').add(
-            {
-                'Nom': Nom,
-                'Prenom': Prenom,
-                'Email': Email,
-                'Entreprise': Entreprise,
-                'Poste': Poste,
-                'Statut': Statut,
-                'Telephone': Telephone,
-            }
-        )
+
+        cli_refs = db.collection('Client').where('Telephone', '==', Telephone)
+        refs = cli_refs.get()
+
+        if refs:
+            for ref in refs:
+                check = ref.to_dict()
+                if check['Telephone'] == Telephone:
+                    return redirect(url_for('test'))
+        else:
+            db.collection('Client').add(
+                {
+                    'Nom': Nom,
+                    'Prenom': Prenom,
+                    'Email': Email,
+                    'Entreprise': Entreprise,
+                    'Poste': Poste,
+                    'Statut': Statut,
+                    'Telephone': Telephone,
+                }
+            )
+        return redirect(url_for('test'))
     return render_template('creationClient.html', creation_client=creation_client)

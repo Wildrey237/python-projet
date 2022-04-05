@@ -32,4 +32,9 @@ class FormulaireAccesEntreprise(FlaskForm):
     Siret = SubmitField()
 
 
+class FormulaireAjoutCommentaire(FlaskForm):
+    nom = StringField()
+    telephone = IntegerField()
+    Commentaire = TextAreaField(validators=[DataRequired()])
+
 

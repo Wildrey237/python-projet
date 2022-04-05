@@ -1,0 +1,11 @@
+{% block title %}{{title}}{% endblock %}
+
+{% block content %}
+<form method="POST">
+    {{ commentaire.csrf_token }}
+    {{ commentaire.Nom }}
+    {{ commentaire.Telephone }}
+    {{ commentaire.Commentaire }}
+    <input type="submit">
+</form>
+{% endblock %}
