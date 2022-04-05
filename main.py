@@ -32,7 +32,7 @@ def ajoutEntreprise():
 
 
 @app.route('/Entreprise/<siret>')
-def entrerpise(siret):
+def entreprise(siret):
     return session_verification(modifyEntreprise(siret))
 
 

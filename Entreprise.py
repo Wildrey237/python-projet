@@ -5,6 +5,17 @@ from Connexion import db
 from Formulaires import FormulaireCreationEntreprise
 
 
+class Entreprise(object):
+
+    def __init__(self, Nom: str = None, Siret: int = None, Adresse: str = None, Code: int = None,
+                 Ville: str = None):
+        self.nom = Nom
+        self.siret = Siret
+        self.adresse = Adresse
+        self.code = Code
+        self.ville = Ville
+
+
 def makeEntreprise():
     creation_entreprise = FormulaireCreationEntreprise()
     if creation_entreprise.validate_on_submit():
@@ -48,14 +59,3 @@ def modifyEntreprise(Siret):
         test = doc.to_dict()
     informations_entreprise.append(test)
     return render_template('entreprise.html', informations_entreprise=informations_entreprise)
-
-
-class Entreprise(object):
-
-    def __init__(self, Nom: str = None, Siret: int = None, Adresse: str = None, Code: int = None,
-                 Ville: str = None):
-        self.nom = Nom
-        self.siret = Siret
-        self.adresse = Adresse
-        self.code = Code
-        self.ville = Ville
