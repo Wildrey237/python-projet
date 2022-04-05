@@ -14,7 +14,7 @@ app.config['SECRET_KEY'] = 'C2HWGVoMGfNTBsrYQg8EcMrdTimkZfAb'
 
 
 # Page de connexion administrateur
-@app.route('/connexion', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def connexion_test():
     return connexion()
 
