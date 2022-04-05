@@ -49,7 +49,7 @@ def ajoutCommentaire(telephone):
 
 @app.route('/facture', methods=['GET', 'POST'])
 def Facture():
-    Email_contact = "hello"
+    Email_contact = "anthony.meny35@gmail.com"
     Siret = 1
     return makeFacture(Email_contact, Siret)
 
