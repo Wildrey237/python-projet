@@ -51,7 +51,7 @@ def modifyEntreprise(Siret):
 
 
 class Entreprise():
-    def TakeEntreprise(self, Siret: int = None):
+    def takeEntreprise(self, Siret: int = None):
         if Siret is None:
             docs = db.collection('Entreprise')
         else:

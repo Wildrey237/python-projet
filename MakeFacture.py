@@ -4,21 +4,21 @@ from datetime import datetime
 from Entreprise import Entreprise
 
 
-def TakeClient(info):
+def takeClient(info):
     user = Client()
-    user.Takeclient(info)
+    user.takeClient(info)
     post = [user.nom, user.prenom, user.mail, user.entreprise, user.telephone]
     return post
 
 
-def TakeEntreprise(info):
+def takeEntreprise(info):
     entreprise = Entreprise()
-    entreprise.TakeEntreprise(info)
+    entreprise.takeEntreprise(info)
     post = [entreprise.nom, entreprise.siret, entreprise.code, entreprise.adresse, entreprise.ville]
     return post
 
 
-def InfoFacture():
+def infoFacture():
     date = datetime.now()
     id = str(date.strftime("%Y%m%d"))
     date = str(date.strftime("%Y-%m-%d %H:%M:%S"))
@@ -26,8 +26,8 @@ def InfoFacture():
     return facture
 
 
-def MakeFacture(Email_contact, Siret):
-    user = TakeClient(Email_contact)
-    facture = InfoFacture()
-    entreprise = TakeEntreprise(Siret)
+def makeFacture(Email_contact, Siret):
+    user = takeClient(Email_contact)
+    facture = infoFacture()
+    entreprise = takeEntreprise(Siret)
     return render_template('factures.html', users=user, facture=facture, entreprise = entreprise)

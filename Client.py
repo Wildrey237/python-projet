@@ -6,7 +6,7 @@ from Connexion import db
 
 
 class Client:
-    def Takeclient(self, Email_contact: str = None):
+    def takeClient(self, Email_contact: str = None):
         if Email_contact is None:
             docs = db.collection('Client')
         else:

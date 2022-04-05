@@ -7,7 +7,7 @@ from Connexion import connexion
 from Client import makeClient
 from Session import session_verification
 from Test import page_test
-from MakeFacture import MakeFacture
+from MakeFacture import makeFacture
 
 app = Flask(__name__, template_folder='templates')
 app.config['SECRET_KEY'] = 'C2HWGVoMGfNTBsrYQg8EcMrdTimkZfAb'
@@ -46,7 +46,7 @@ def ajoutClient():
 def Facture():
     Email_contact = "hello"
     Siret = 1
-    return MakeFacture(Email_contact, Siret)
+    return makeFacture(Email_contact, Siret)
 
 
 if __name__ == '__main__':

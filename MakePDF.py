@@ -4,12 +4,12 @@ from datetime import datetime
 template = 'http://127.0.0.1:5000/facture'
 
 
-class PDFGenerator:
+class PdfGenerator:
 
     def __init__(self, nom_facture: str = None):
         self.id_facture = nom_facture
 
-    def Make_PDF(self):
+    def make_PDF(self):
         date = datetime.now()
         id = str(date.strftime("%Y-%m-%d %H:%M:%S"))
         name = f"facture n°{id}"
@@ -17,5 +17,5 @@ class PDFGenerator:
         return pdf
 
 
-fact = PDFGenerator()
-fact.Make_PDF()
+fact = PdfGenerator()
+fact.make_PDF()
