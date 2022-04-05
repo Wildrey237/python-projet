@@ -50,12 +50,33 @@ def modifyEntreprise(Siret):
     return render_template('entreprise.html', informations_entreprise=informations_entreprise)
 
 
-class Entreprise(object):
+class Entreprise():
+    def TakeEntreprise(self, Siret: int = None):
+        if Siret is None:
+            docs = db.collection('Entreprise')
+        else:
+            docs = db.collection('Entreprise').where(u'Siret', u'==', Siret)
+        docs = docs.get()
+        entreprise = []
+        for doc in docs:
+            post = doc.to_dict()
+            entreprise.append(post)
+        entreprise = entreprise[0]
+        self.nom = entreprise['Nom']
+        self.siret = entreprise['Siret']
+        self.adresse = entreprise['Adresse']
+        self.code = entreprise['Code']
+        self.ville = entreprise['Ville']
+        self.url = entreprise['URL']
+        self.description = entreprise['Description']
 
     def __init__(self, Nom: str = None, Siret: int = None, Adresse: str = None, Code: int = None,
-                 Ville: str = None):
+                 Ville: str = None, URL: str = None, Description: str = None):
         self.nom = Nom
         self.siret = Siret
         self.adresse = Adresse
         self.code = Code
         self.ville = Ville
+        self.url = URL
+        self.description = Description
+
