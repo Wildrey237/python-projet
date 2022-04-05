@@ -4,8 +4,9 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, EmailField, IntegerField, TextAreaField, BooleanField, SubmitField
 from wtforms.validators import DataRequired
 
+
 class Client:
-    def from_email(self, email :str = None):
+    def from_email(self, email: str = None):
         if email is None:
             raise Exception('Invalid request')
 
@@ -78,7 +79,9 @@ class FormulaireCreationClient(FlaskForm):
     Telephone = IntegerField(validators=[DataRequired()])
 
     def to_model(self):
-        return Client(self.Email.data, self.Entreprise.data, self.Nom.data, self.Poste.data, self.Prenom.data, self.Statut.data, self.Telephone.data)
+        return Client(self.Email.data, self.Entreprise.data, self.Nom.data, self.Poste.data, self.Prenom.data,
+                      self.Statut.data, self.Telephone.data)
+
 
 def makeClient():
     creation_client = FormulaireCreationClient()

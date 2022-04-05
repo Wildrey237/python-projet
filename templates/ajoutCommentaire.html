@@ -1,10 +1,11 @@
-{% block title %}{{title}}{% endblock %}
+{% extends "base.html" %}
+{% block title %}Ajoutez une commentaire{% endblock %}
 
-{% block content %}
+{% block commentaire %}
 <form method="POST">
     {{ commentaire.csrf_token }}
-    {{ commentaire.Nom }}
-    {{ commentaire.Telephone }}
+    {{ commentaire.nom }}
+    {{ commentaire.telephone }}
     {{ commentaire.Commentaire }}
     <input type="submit">
 </form>

@@ -1,6 +1,7 @@
-{% block title %}{{title}}{% endblock %}
+{% extends "base.html" %}
+{% block title %}Ajoutez un client{% endblock %}
 
-{% block content %}
+{% block form_client %}
 <form method="POST">
     {{ creation_client.csrf_token }}
     {{ creation_client.Nom }}
