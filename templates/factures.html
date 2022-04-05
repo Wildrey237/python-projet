@@ -22,16 +22,16 @@
             <dl class="bloc">
               <dt>Facturé à:</dt>
               <dd>
-                {{entreprise[0]}}<br>
-                {{entreprise[2]}}, {{entreprise[3]}}<br>
-                {{entreprise[4]}} Siret°: {{entreprise[1]}}
+                {{entreprise.nom}}<br>
+                {{entreprise.code}}, {{entreprise.adresse}}<br>
+                {{entreprise.ville}} Siret°: {{entreprise.siret}}
                 <dl>
                   <dt>Attn</dt>
-                  <dd>{{users[0]}} {{users[1]}} </dd>
+                  <dd>{{users.nom}} {{users.prenom}} </dd>
                   <dt>Téléphone</dt>
-                  <dd>{{users[4]}}</dd>
+                  <dd>{{users.telephone}}</dd>
                   <dt>Courriel</dt>
-                  <dd>{{users[2]}}</dd>
+                  <dd>{{users.mail}}</dd>
                 </dl>
               </dd>
             </dl>

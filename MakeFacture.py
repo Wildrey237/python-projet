@@ -7,14 +7,14 @@ from Entreprise import Entreprise
 def takeClient(info):
     user = Client()
     user.takeClient(info)
-    post = [user.nom, user.prenom, user.mail, user.entreprise, user.telephone]
+    post = user
     return post
 
 
 def takeEntreprise(info):
     entreprise = Entreprise()
     entreprise.takeEntreprise(info)
-    post = [entreprise.nom, entreprise.siret, entreprise.code, entreprise.adresse, entreprise.ville]
+    post = entreprise
     return post
 
 
