@@ -16,10 +16,10 @@
         {% for entreprise in liste_entreprise %}
         <tbody>
             <tr>
-              <td>{{ entreprise.Nom }}</td>
+              <td><a href="/Entreprise-{{ entreprise.Siret }}">{{ entreprise.Nom }}</td>
               <td>{{ entreprise.Ville}}</td>
               <td>{{ entreprise.Description}}</td>
-              <td>{{ formulaire_acces_entreprise.Siret(value=entreprise.Siret)}}</td>
+              <td>{{ entreprise.Siret }}</td>
             </tr>
         </tbody>
         {% endfor %}
