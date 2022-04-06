@@ -83,10 +83,11 @@ class FormulaireCreationClient(FlaskForm):
                       self.Statut.data, self.Telephone.data)
 
 
-def makeClient():
+def make_client():
     creation_client = FormulaireCreationClient()
+    result = render_template('creationClient.html', creation_client=creation_client)
     if creation_client.validate_on_submit():
         client = creation_client.to_model()
         client.save()
-        return redirect(url_for('test'))
-    return render_template('creationClient.html', creation_client=creation_client)
+        result = redirect(url_for('test'))
+    return result

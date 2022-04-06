@@ -1,11 +1,11 @@
 from flask import request, render_template, url_for
 from werkzeug.utils import redirect
-
 from Connexion import db
 from Formulaires import FormulaireCreationEntreprise, FormulaireFacture
+from MakePDF import enregistre_PDF
 
 
-def makeEntreprise():
+def make_entreprise():
     creation_entreprise = FormulaireCreationEntreprise()
     if creation_entreprise.validate_on_submit():
         Nom = request.form.get('Nom')
@@ -40,7 +40,7 @@ def makeEntreprise():
     return render_template('creationEntreprise.html', creation_entreprise=creation_entreprise)
 
 
-def modifyEntreprise(Siret):
+def modify_entreprise(Siret):
     Siret = int(Siret)
     users_ref = db.collection(u'Entreprise').where(u'Siret', u'==', Siret)
     docs = users_ref.get()
@@ -52,7 +52,6 @@ def modifyEntreprise(Siret):
     for contact in contacts:
         tt = contact.to_dict()
         informations_contact.append(tt)
-
     formulaire_modification_entreprise = FormulaireCreationEntreprise()
     formulaire_facture = FormulaireFacture()
     if formulaire_modification_entreprise.validate_on_submit():
@@ -88,9 +87,10 @@ def modifyEntreprise(Siret):
         if request.form['contact'] == 'Acceder':
             return redirect(url_for('test'))
         elif request.form['contact'] == 'Visualiser facture':
-            return redirect(url_for('connexion_test'))
+            return redirect(f'/facture-{Email}-{Siret}')
         elif request.form['contact'] == 'Creer facture':
-            return redirect(url_for('test'))
+            enregistre_PDF(Email, Siret)
+            return redirect(f'/facture-{Email}-{Siret}')
 
     return render_template('entreprise.html', informations_entreprise=informations_entreprise,
                            formulaire_modification_entreprise=formulaire_modification_entreprise,
@@ -98,7 +98,7 @@ def modifyEntreprise(Siret):
 
 
 class Entreprise():
-    def takeEntreprise(self, Siret: int = None):
+    def take_entreprise(self, Siret: int = None):
         if Siret is None:
             docs = db.collection('Entreprise')
         else:
@@ -126,4 +126,3 @@ class Entreprise():
         self.ville = Ville
         self.url = URL
         self.description = Description
-

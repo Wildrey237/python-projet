@@ -1,7 +1,5 @@
 import datetime
-
 from flask import request, render_template
-
 from Connexion import db
 from Formulaires import FormulaireAjoutCommentaire
 
@@ -12,14 +10,14 @@ class Commentaire(object):
         pass
 
 
-def infoClient(telephone):
+def info_client(telephone):
     refs = db.collection('Client').where('Telephone', '==', telephone)
     identifiant = refs.get()
     return identifiant
 
 
-def makeCommentaire(telephone):
-    client = infoClient(telephone)
+def make_commentaire(telephone):
+    client = info_client(telephone)
     form_commentaire = FormulaireAjoutCommentaire()
 
     form_commentaire.nom.data = client[0].get('Nom')

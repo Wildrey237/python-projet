@@ -3,8 +3,9 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, EmailField, IntegerField, TextAreaField, BooleanField, SubmitField
 from wtforms.validators import DataRequired
 
+
 class ConnexionFormulaire(FlaskForm):
-    Email = EmailField(validators=[DataRequired()])
+    Email = EmailField(validators=[DataRequired()], render_kw={'readonly': True})
     Password = PasswordField(validators=[DataRequired()])
 
 
@@ -21,6 +22,7 @@ class FormulaireCreationEntreprise(FlaskForm):
 class FormulaireAccesEntreprise(FlaskForm):
     Siret = SubmitField()
 
+
 class FormulaireFacture(FlaskForm):
     Email = EmailField()
 
@@ -29,5 +31,3 @@ class FormulaireAjoutCommentaire(FlaskForm):
     nom = StringField()
     telephone = IntegerField()
     Commentaire = TextAreaField(validators=[DataRequired()])
-
-

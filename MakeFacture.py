@@ -13,7 +13,7 @@ def takeClient(info):
 
 def takeEntreprise(info):
     entreprise = Entreprise()
-    entreprise.takeEntreprise(info)
+    entreprise.take_entreprise(info)
     post = entreprise
     return post
 
