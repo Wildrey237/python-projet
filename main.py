@@ -21,7 +21,13 @@ def connexion_test():
 # Page de test pour les variables de sessions de 60 minutes
 @app.route('/Homepage', methods=['GET', 'POST'])
 def Homepage():
-    return session_verification(page_test())
+    return session_verification(page_test(None))
+
+
+@app.route('/Recherche-<recherche>', methods=['GET', 'POST'])
+def Homepage_recherche(recherche):
+    return session_verification(page_test(recherche))
+
 
 @app.route('/Client-<Email>', methods=['GET', 'POST'])
 def client(Email):

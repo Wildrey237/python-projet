@@ -36,6 +36,13 @@ class FormulaireFacture(FlaskForm):
     Email = EmailField(render_kw={'readonly': True})
 
 
-
 class FormulaireAjoutCommentaire(FlaskForm):
     Commentaire = TextAreaField(validators=[DataRequired()])
+
+
+class FormulaireRecherche(FlaskForm):
+    recherche = StringField(validators=[DataRequired()])
+
+
+class FormulaireRechercheContact(FlaskForm):
+    Recherche = StringField(validators=[DataRequired()])
