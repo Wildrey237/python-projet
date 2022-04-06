@@ -20,8 +20,7 @@ def page_test(recherche):
     formulaire_recherche = FormulaireRecherche()
     result = render_template('homepage.html', liste_entreprise=liste_entreprise,
                              formulaire_acces_entreprise=formulaire_acces_entreprise,
-                             formulaire_recherche=formulaire_recherche,
-                             formulaire_recherche_contact=formulaire_recherche_contact)
+                             formulaire_recherche=formulaire_recherche)
     if formulaire_recherche.validate_on_submit():
         recherche = request.form['recherche']
         return redirect(f'/Recherche-{recherche}')
