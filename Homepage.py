@@ -13,6 +13,11 @@ def page_test(recherche):
     liste_entreprise = []
     for entreprise in dictionnaire_entreprise:
         entreprise_todict = entreprise.to_dict()
+        facture_ref = db.collection('Facture').where(u'SiretEntreprise', u'==', entreprise_todict['Siret'])
+        factures = facture_ref.get()
+        nb_facture = len(factures)
+        dic_facture = {'Facture' : nb_facture}
+        entreprise_todict.update(dic_facture)
         liste_entreprise.append(entreprise_todict)
     if liste_entreprise == []:
         return redirect('/Homepage')
