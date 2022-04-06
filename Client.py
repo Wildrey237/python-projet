@@ -1,6 +1,6 @@
 from flask import redirect, url_for, render_template, request
 from flask_wtf import FlaskForm
-from wtforms import StringField, EmailField, IntegerField, BooleanField
+from wtforms import StringField, EmailField, IntegerField, BooleanField, SelectField
 from wtforms.validators import DataRequired
 
 from Connexion import db
@@ -77,7 +77,7 @@ class FormulaireCreationClient(FlaskForm):
     Email = EmailField(validators=[DataRequired()])
     Entreprise = StringField(validators=[DataRequired()])
     Poste = StringField(validators=[DataRequired()])
-    Statut = BooleanField(validators=[DataRequired()])
+    Statut = SelectField(validators=[DataRequired()], choices=['Actif', 'Inactif'])
     Telephone = IntegerField(validators=[DataRequired()])
 
     def to_model(self):
