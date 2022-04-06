@@ -1,6 +1,7 @@
 import pdfkit
 from datetime import datetime
 from Connexion import db
+from flask import redirect, url_for, render_template, request
 
 
 class PdfGenerator:
@@ -18,7 +19,7 @@ class PdfGenerator:
         pdf = pdfkit.from_url(template, f'Facture/{self.id_facture}.pdf')
         return pdf
 
-    def take(self,email,siret):
+    def take(self, email, siret):
         self.email = email
         self.SiretEntreprise = siret
         return self.email, self.SiretEntreprise
@@ -37,7 +38,12 @@ class PdfGenerator:
 
 def enregistre_PDF(email, Siret):
     fact = PdfGenerator()
-    fact.take(email,Siret)
+    fact.take(email, Siret)
     fact.save()
     template = f'http://127.0.0.1:5000/facture-{email}-{Siret}'
     return fact.make_PDF(template)
+
+
+def facture_final(email, Siret):
+    enregistre_PDF(email, Siret)
+    return redirect(f'/facture-{email}-{Siret}')

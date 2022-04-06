@@ -58,7 +58,7 @@
                 <td>{{ contact.Email }}</td>
                 <td><a href="/Client-{{ contact.Email }}">Information</td>
                 <td><a href="/facture-{{ contact.Email }}-{{ informations_entreprise.Siret }}">Visualiser la facture</td>
-                <td><a href="/facture-{{ contact.Email }}-{{ informations_entreprise.Siret }}" class="button" download="Facture"><i class="fa fa-download"></i>Télécharger PDF</a></td>
+                <td><a href="/pdf-{{ contact.Email }}-{{ informations_entreprise.Siret }}" class="button"><i class="fa fa-download"></i>Télécharger PDF</a></td>
             </tr>
         </tbody>
         {% endfor %}
