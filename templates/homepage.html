@@ -2,29 +2,27 @@
 {% block content %} Home Page {% endblock %}
 
 {% block table_entreprise %}
-<div class="h-100 d-flex align-items-center">
-    <div class="container w-50 h-75">
+<div id="liste_entreprise" class="table-responsive">
+    <table class="table">
+        {{ formulaire_acces_entreprise.csrf_token }}
+        <thead>
+            <tr>
+            <th>Entreprise</th>
+            <th>Siège Social</th>
+            <th>Description</th>
+            <th>Numéro Siret</th>
+            </tr>
+        </thead>
         {% for entreprise in liste_entreprise %}
-        <div class="container border border-dark">
-            <form method="POST">
-                <div class="row align-items-start">
-                    {{ formulaire_acces_entreprise.csrf_token }}
-                    <div class="col">
-                        {{ entreprise.Nom }}
-                    </div>
-                    <div class="col">
-                        {{ entreprise.Ville}}
-                    </div>
-                    <div class="col">
-                        {{ entreprise.Description}}
-                    </div>
-                    <div class="col">
-                        {{ formulaire_acces_entreprise.Siret(value=entreprise.Siret)}}
-                    </div>
-                </div>
-            </form>
-        </div>
+        <tbody>
+            <tr>
+              <td>{{ entreprise.Nom }}</td>
+              <td>{{ entreprise.Ville}}</td>
+              <td>{{ entreprise.Description}}</td>
+              <td>{{ formulaire_acces_entreprise.Siret(value=entreprise.Siret)}}</td>
+            </tr>
+        </tbody>
         {% endfor %}
-    </div>
+    </table>
 </div>
 {% endblock %}
