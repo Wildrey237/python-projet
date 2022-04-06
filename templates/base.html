@@ -24,19 +24,35 @@
       </div>
     </nav>
     <br>
-    {% block table %}
+    {% block table_entreprise %}
     {% endblock %}
-    {% block form_client %}
-    {% endblock %}
-    {% block form_entreprise %}
-    {% endblock %}
-    {% block commentaire %}
-    {% endblock %}
-    {% block info_entreprise %}
-    {% endblock %}
-    {% block client %}
-    {% endblock %}
-    {% block entreprise %}
-    {% endblock %}
+    <div class="row h-100">
+        <div class="col-md-7 h-100">
+            <div class="h-100 d-flex align-items-center">
+                <div class="container w-50 ">
+                    {% block form_client %}
+                    {% endblock %}
+                    {% block form_entreprise %}
+                    {% endblock %}
+                    {% block commentaire %}
+                    {% endblock %}
+                    {% block info_entreprise %}
+                    {% endblock %}
+                    {% block client %}
+                    {% endblock %}
+                    {% block entreprise %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 h-100">
+        <div class="h-100 d-flex align-items-center">
+            <div class="container w-100 ">
+                {% block client_assoc %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
 </body>
 </html>

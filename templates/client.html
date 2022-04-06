@@ -2,68 +2,57 @@
 {% block title %} Relation Entreprise Client {% endblock %}
 
 {% block client %}
-<body>
-    <div class="row h-100">
-        <div class="col-md-7 h-100">
-            <div class="h-100 d-flex align-items-center">
-                <div class="container w-50 ">
-                    <form method="post">
-                        {{ formulaire_modification_client.csrf_token}}
-                        <div class="mb-3">
-                            <label for="Email" class="form-label "> Email :</label>
-                            {{  formulaire_modification_client.Email(value=informations_client.Email , class_="form-control" ) }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="Nom" class="form-label "> Nom :</label>
-                            {{  formulaire_modification_client.Nom(value=informations_client.Nom, class_="form-control" ) }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="Prenom" class="form-label"> Prenom :</label>
-                            {{  formulaire_modification_client.Prenom(value=informations_client.Prenom, class_="form-control") }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="Poste" class="form-label "> Poste:</label>
-                            {{  formulaire_modification_client.Poste(value=informations_client.Poste, class_="form-control") }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="Statut" class="form-label "> Statut :</label>
-                            {{  formulaire_modification_client.Statut(value=informations_client.Statut, class_="form-control") }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="Telephone" class="form-label "> Telephone :</label>
-                            {{  formulaire_modification_client.Telephone(value=informations_client.Telephone, class_="form-control") }}
-                        </div>
-                        <div class="mb-3">
-                            <input type="submit" name='valider' value="Modifier" class="btn btn-primary">
-                            <input type="submit" name='valider' value="Supprimer" class="btn btn-primary">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-5 h-100">
-            <div class="h-100 d-flex align-items-center">
-                <div class="container w-100 ">
+<form method="post">
+    {{ formulaire_modification_client.csrf_token}}
+    <div class="mb-3">
+        <label for="Email" class="form-label "> Email :</label>
+        {{  formulaire_modification_client.Email(value=informations_client.Email , class_="form-control" ) }}
+    </div>
+    <div class="mb-3">
+        <label for="Nom" class="form-label "> Nom :</label>
+        {{  formulaire_modification_client.Nom(value=informations_client.Nom, class_="form-control" ) }}
+    </div>
+    <div class="mb-3">
+        <label for="Prenom" class="form-label"> Prenom :</label>
+        {{  formulaire_modification_client.Prenom(value=informations_client.Prenom, class_="form-control") }}
+    </div>
+    <div class="mb-3">
+        <label for="Poste" class="form-label "> Poste:</label>
+        {{  formulaire_modification_client.Poste(value=informations_client.Poste, class_="form-control") }}
+    </div>
+    <div class="mb-3">
+        <label for="Statut" class="form-label "> Statut :</label>
+        {{  formulaire_modification_client.Statut(value=informations_client.Statut, class_="form-control") }}
+    </div>
+    <div class="mb-3">
+        <label for="Telephone" class="form-label "> Telephone :</label>
+        {{  formulaire_modification_client.Telephone(value=informations_client.Telephone, class_="form-control") }}
+    </div>
+    <div class="mb-3">
+        <input type="submit" name='valider' value="Modifier" class="btn btn-primary">
+        <input type="submit" name='valider' value="Supprimer" class="btn btn-primary">
+    </div>
+</form>
+<div class="col-md-5 h-100">
+    <div class="h-100 d-flex align-items-center">
+        <div class="container w-100 ">
 
-                        {% for commentaire in informations_commentaire %}
-                            <div class="row w-75 d-flex align-items-center">
-                                 <div class="col-3">
-                                <span class="input-group-text">{{ commentaire.Nom }}</span>
-                                 </div>
-                                <div class="col-3">
-                                <span class="input-group-text">{{ commentaire.Date_de_creation }}</span>
-                            </div>
-                                <div class="col-3">
-                                    <span class="input-group-text">{{ commentaire.Commentaire }}</span>
-                            </div>
-                             </div>
-                      {% endfor %}
-                        
+                {% for commentaire in informations_commentaire %}
+                    <div class="row w-75 d-flex align-items-center">
+                         <div class="col-3">
+                        <span class="input-group-text">{{ commentaire.Nom }}</span>
+                         </div>
+                        <div class="col-3">
+                        <span class="input-group-text">{{ commentaire.Date_de_creation }}</span>
+                    </div>
+                        <div class="col-3">
+                            <span class="input-group-text">{{ commentaire.Commentaire }}</span>
+                    </div>
+                     </div>
+              {% endfor %}
 
-                </div> 
-            </div>
+
         </div>
     </div>
-</body>
-
+</div>
 {% endblock %}

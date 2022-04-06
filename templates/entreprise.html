@@ -2,82 +2,66 @@
 {% block title %}Entreprise{% endblock %}
 
 {% block entreprise %}
-<body>
-    <div class="row h-100">
-        <div class="col-md-7 h-100">
-            <div class="h-100 d-flex align-items-center">
-                <div class="container w-50 ">
-                    <form method="post">
-                        {{ formulaire_modification_entreprise.csrf_token}}
-                        <div class="mb-3">
-                            <label for="Nom" class="form-label "> Nom :</label>
-                            {{  formulaire_modification_entreprise.Nom(value=informations_entreprise.Nom, class_="form-control" ) }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="Siret" class="form-label "> Siret :</label>
-                            {{  formulaire_modification_entreprise.Siret(value=informations_entreprise.Siret, class_="form-control" ) }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="Adresse" class="form-label"> Adresse :</label>
-                            {{  formulaire_modification_entreprise.Adresse(value=informations_entreprise.Adresse, class_="form-control") }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="Code" class="form-label "> Code :</label>
-                            {{  formulaire_modification_entreprise.Code(value=informations_entreprise.Code, class_="form-control") }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="Ville" class="form-label "> Ville :</label>
-                            {{  formulaire_modification_entreprise.Ville(value=informations_entreprise.Ville, class_="form-control") }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="Description" class="form-label "> Description :</label>
-                            <textarea class="form-control" name="Description">{{ informations_entreprise.Description }} </textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="URL" class="form-label "> URL :</label>
-                            {{  formulaire_modification_entreprise.URL(value=informations_entreprise.URL, class_="form-control") }}
-                        </div>
-                        <div class="mb-3">
-                            <input type="submit" name='valider' value="Modifier" class="btn btn-primary">
-                            <input type="submit" name='valider' value="Supprimer" class="btn btn-primary">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-5 h-100">
-            <div class="h-100 d-flex align-items-center">
-                <div class="container w-100 ">
-
-                        {% for contact in informations_contact %}
 <form method="post">
-                        {{ formulaire_facture.csrf_token}}                             <div class="row w-75 d-flex align-items-center">
-                                 <div class="col-3">
-                                <span class="input-group-text">{{ contact.Nom }}</span>
-                                 </div>
-                                <div class="col-3">
-                                <span class="input-group-text">{{ contact.Prenom }}</span>
-                            </div>
-                                <div class="col-3">
-                                {{ formulaire_facture.Email(value=contact.Email, class_='form-control') }}
-                            </div>
-                                <div class="col-1">
-                                <input type="submit" name="contact" class="btn btn-primary" value="Acceder">
-                            </div>
-                                <div class="col-1">
-                                <input type="submit" name="contact" value='Visualiser facture' class="btn btn-primary">
-                            </div>
-                                <div class="col-1">
-                                <input type="submit" name="contact" value='Creer facture' class="btn btn-primary">
-                            </div>
-                             </div>
- </form>                        {% endfor %}
-                        
-
-                </div> 
-            </div>
+    {{ formulaire_modification_entreprise.csrf_token}}
+    <div class="mb-3">
+        <label for="Nom" class="form-label "> Nom :</label>
+        {{  formulaire_modification_entreprise.Nom(value=informations_entreprise.Nom, class_="form-control" ) }}
+    </div>
+    <div class="mb-3">
+        <label for="Siret" class="form-label "> Siret :</label>
+        {{  formulaire_modification_entreprise.Siret(value=informations_entreprise.Siret, class_="form-control" ) }}
+    </div>
+    <div class="mb-3">
+        <label for="Adresse" class="form-label"> Adresse :</label>
+        {{  formulaire_modification_entreprise.Adresse(value=informations_entreprise.Adresse, class_="form-control") }}
+    </div>
+    <div class="mb-3">
+        <label for="Code" class="form-label "> Code :</label>
+        {{  formulaire_modification_entreprise.Code(value=informations_entreprise.Code, class_="form-control") }}
+    </div>
+    <div class="mb-3">
+        <label for="Ville" class="form-label "> Ville :</label>
+        {{  formulaire_modification_entreprise.Ville(value=informations_entreprise.Ville, class_="form-control") }}
+    </div>
+    <div class="mb-3">
+        <label for="Description" class="form-label "> Description :</label>
+        <textarea class="form-control" name="Description">{{ informations_entreprise.Description }} </textarea>
+    </div>
+    <div class="mb-3">
+        <label for="URL" class="form-label "> URL :</label>
+        {{  formulaire_modification_entreprise.URL(value=informations_entreprise.URL, class_="form-control") }}
+    </div>
+    <div class="mb-3">
+        <input type="submit" name='valider' value="Modifier" class="btn btn-primary">
+        <input type="submit" name='valider' value="Supprimer" class="btn btn-primary">
+    </div>
+</form>
+{% endblock %}
+{% block client_assoc %}
+{% for contact in informations_contact %}
+<form method="post">
+    {{ formulaire_facture.csrf_token}}
+    <div class="row d-flex align-items-center">
+        <div class="col-3">
+            <span class="input-group-text">{{ contact.Nom }}</span>
+        </div>
+        <div class="col-3">
+            <span class="input-group-text">{{ contact.Prenom }}</span>
+        </div>
+        <div class="col-3">
+            {{ formulaire_facture.Email(value=contact.Email, class_='form-control') }}
+        </div>
+        <div class="col-2">
+            <input type="submit" name="contact" class="btn btn-primary" value="Acceder">
+        </div>
+        <div class="col-2">
+            <input type="submit" name="contact" value='Visualiser facture' class="btn btn-primary">
+        </div>
+        <div class="col-2">
+            <input type="submit" name="contact" value='Creer facture' class="btn btn-primary">
         </div>
     </div>
-</body>
-
+</form>
+{% endfor %}
 {% endblock %}
