@@ -4,7 +4,7 @@ from Connexion import db
 
 
 def page_test():
-    collection_entreprise = db.collection(u'Entreprise')
+    collection_entreprise = db.collection(u'Entreprise').order_by('Nom')
     dictionnaire_entreprise = collection_entreprise.get()
     liste_entreprise = []
     for entreprise in dictionnaire_entreprise:

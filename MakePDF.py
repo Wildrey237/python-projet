@@ -11,6 +11,7 @@ class PdfGenerator:
         date = datetime.now()
         id = str(date.strftime("%Y-%m-%d %H:%M:%S"))
         name = f"facture n°{id}"
+
         pdf = pdfkit.from_url(template, f'Facture/{name}.pdf')
         return pdf
 

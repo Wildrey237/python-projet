@@ -1,6 +1,6 @@
 from flask import render_template, url_for, redirect
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, EmailField, IntegerField, TextAreaField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, EmailField, IntegerField, TextAreaField, BooleanField, SubmitField, SelectField
 from wtforms.validators import DataRequired
 
 
@@ -21,12 +21,12 @@ class FormulaireCreationEntreprise(FlaskForm):
 
 class FormulaireModificationClient(FlaskForm):
     Email = EmailField(validators=[DataRequired()])
-    Entreprise = StringField(validators=[DataRequired()])
     Nom = StringField(validators=[DataRequired()])
     Poste = StringField(validators=[DataRequired()])
-    Prenom= StringField(validators=[DataRequired()])
-    Statut = BooleanField(validators=[DataRequired()])
-    Telephone = StringField()
+    Prenom = StringField(validators=[DataRequired()])
+    Statut = SelectField(validators=[DataRequired()], choices=['Actif', 'Inactif'])
+    Telephone = IntegerField(validators=[DataRequired()])
+
 
 class FormulaireAccesEntreprise(FlaskForm):
     Siret = SubmitField()

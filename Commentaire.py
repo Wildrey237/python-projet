@@ -11,6 +11,7 @@ class Commentaire(object):
 
 
 def info_client(telephone):
+    telephone = int(telephone)
     refs = db.collection('Client').where('Telephone', '==', telephone)
     identifiant = refs.get()
     return identifiant

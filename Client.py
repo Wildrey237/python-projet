@@ -1,9 +1,8 @@
+from Connexion import db
 from flask import redirect, url_for, render_template, request
 from flask_wtf import FlaskForm
-from wtforms import StringField, EmailField, IntegerField, BooleanField
+from wtforms import StringField, PasswordField, EmailField, IntegerField, TextAreaField, BooleanField, SubmitField
 from wtforms.validators import DataRequired
-
-from Connexion import db
 from Formulaires import FormulaireModificationClient
 
 
@@ -109,13 +108,13 @@ def modify_client(Email):
     formulaire_modification_client = FormulaireModificationClient()
     if formulaire_modification_client.validate_on_submit():
         Email = request.form.get('Email')
-        Entreprise = request.form.get('Entreprise')
         Nom = request.form.get('Nom')
         Poste = request.form.get('Poste')
         Prenom = request.form.get('Prenom')
         Statut = request.form.get('Statut')
         Telephone = request.form.get('Telephone')
-        ref_entreprise = db.collection('Client').where(u'Telephone', u'==', Telephone )
+        Telephone = int(Telephone)
+        ref_entreprise = db.collection('Client').where(u'Telephone', u'==', Telephone)
         docs = ref_entreprise.get()
         for doc in docs:
             id = doc.id
@@ -133,6 +132,8 @@ def modify_client(Email):
         elif request.form['valider'] == 'Supprimer':
             db.collection('Client').document(id).delete()
             return redirect(url_for('test'))
+        elif request.form['valider'] == f'Ajouter un commentaire':
+            return redirect(f'/ajout-commentaire-{Telephone}')
 
     return render_template('client.html', informations_client=informations_client,
                            formulaire_modification_client=formulaire_modification_client,
