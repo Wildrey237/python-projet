@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, request
 from Formulaires import FormulaireAccesEntreprise, FormulaireRecherche
 from Connexion import db
-from recherche import recherche_contact
+
 
 
 def page_test(recherche):
