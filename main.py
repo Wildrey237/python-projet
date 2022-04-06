@@ -1,6 +1,6 @@
 from flask import Flask
 
-from Client import make_client
+from Client import make_client, modify_client
 from Commentaire import make_commentaire
 from Connexion import connexion
 from Entreprise import make_entreprise, modify_entreprise
@@ -22,6 +22,10 @@ def connexion_test():
 @app.route('/test', methods=['GET', 'POST'])
 def test():
     return session_verification(page_test())
+
+@app.route('/Client-<Email>', methods=['GET', 'POST'])
+def client(Email):
+    return session_verification(modify_client(Email))
 
 
 # Page d'ajout d'une entreprise dans la BDD

@@ -3,6 +3,7 @@ from flask import redirect, url_for, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, EmailField, IntegerField, TextAreaField, BooleanField, SubmitField
 from wtforms.validators import DataRequired
+from Formulaires import FormulaireModificationClient
 
 
 class Client:
@@ -91,3 +92,47 @@ def make_client():
         client.save()
         result = redirect(url_for('test'))
     return result
+
+
+def modify_client(Email):
+    users_ref = db.collection(u'Client').where(u'Email', u'==', Email)
+    docs = users_ref.get()
+    for doc in docs:
+        informations_client = doc.to_dict()
+    informations_commentaire = []
+    commentaire_ref = db.collection(u'Commentaire').where(u'Telephone', u'==', f"{informations_client['Telephone']}")
+    commentaires = commentaire_ref.get()
+    for commentaire in commentaires:
+        tt = commentaire.to_dict()
+        informations_commentaire.append(tt)
+    formulaire_modification_client = FormulaireModificationClient()
+    if formulaire_modification_client.validate_on_submit():
+        Email = request.form.get('Email')
+        Entreprise = request.form.get('Entreprise')
+        Nom = request.form.get('Nom')
+        Poste = request.form.get('Poste')
+        Prenom = request.form.get('Prenom')
+        Statut = request.form.get('Statut')
+        Telephone = request.form.get('Telephone')
+        ref_entreprise = db.collection('Client').where(u'Telephone', u'==', Telephone )
+        docs = ref_entreprise.get()
+        for doc in docs:
+            id = doc.id
+        if request.form['valider'] == 'Modifier':
+            db.collection('Client').document(id).set(
+                {
+                    'Email': Email,
+                    'Nom': Nom,
+                    'Poste': Poste,
+                    'Prenom': Prenom,
+                    'Statut': Statut,
+                    'Telephone': Telephone,
+                }
+            )
+        elif request.form['valider'] == 'Supprimer':
+            db.collection('Client').document(id).delete()
+            return redirect(url_for('test'))
+
+    return render_template('client.html', informations_client=informations_client,
+                           formulaire_modification_client=formulaire_modification_client,
+                           informations_commentaire=informations_commentaire)

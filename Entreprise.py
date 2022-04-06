@@ -85,7 +85,7 @@ def modify_entreprise(Siret):
     elif formulaire_facture.validate_on_submit():
         Email = request.form.get('Email')
         if request.form['contact'] == 'Acceder':
-            return redirect(url_for('test'))
+            return redirect(f'/Client-{Email}')
         elif request.form['contact'] == 'Visualiser facture':
             return redirect(f'/facture-{Email}-{Siret}')
         elif request.form['contact'] == 'Creer facture':
