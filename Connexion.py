@@ -18,8 +18,10 @@ def connexion():
             test = doc.to_dict()
             if test["Password"] == f'{Password}':
                 session['duree'] = time.time() + 3600  # Durée en seconde de la session
+                session['Email'] = Email
                 print('bv')
                 result = redirect(url_for('Homepage'))
             else:
+                session['Email'] = None
                 result = redirect(url_for('connexion_test'))
     return result

@@ -21,8 +21,7 @@ def make_commentaire(telephone):
     client = info_client(telephone)
     form_commentaire = FormulaireAjoutCommentaire()
 
-    form_commentaire.nom.data = client[0].get('Nom')
-    form_commentaire.telephone.data = client[0].get('Telephone')
+    test = client[0].get('Nom')
     temps_commentaire = datetime.datetime.now()
 
     if form_commentaire.validate_on_submit():
@@ -35,4 +34,4 @@ def make_commentaire(telephone):
                 'Date de création': temps_commentaire
             }
         )
-    return render_template('ajoutCommentaire.html', commentaire=form_commentaire)
+    return render_template('ajoutCommentaire.html', commentaire=form_commentaire, test=test)

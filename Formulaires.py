@@ -38,6 +38,4 @@ class FormulaireFacture(FlaskForm):
 
 
 class FormulaireAjoutCommentaire(FlaskForm):
-    nom = StringField()
-    telephone = IntegerField()
     Commentaire = TextAreaField(validators=[DataRequired()])
