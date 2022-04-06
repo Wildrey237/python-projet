@@ -3,39 +3,43 @@
 
 {% block form_entreprise %}
 <body>
-    <div class="h-100 d-flex align-items-start">
-        <div class="container w-25 h-50">
-            <form method="POST">
-                {{ creation_entreprise.csrf_token }}
-                <div class="mb-3">
-                    <label for="Nom" class="form-label "> Nom* :</label>
-                        {{ creation_entreprise.Nom }}
+    <div class="row h-100">
+        <div class="col-md-7 h-100">
+            <div class="h-100 d-flex align-items-center">
+                <div class="container w-50 ">
+                    <form method="POST">
+                        {{ creation_entreprise.csrf_token }}
+                        <div class="mb-3">
+                            <label for="Nom" class="form-label "> Nom* :</label>
+                                {{ creation_entreprise.Nom(class_="form-control" ) }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="Siret" class="form-label "> Siret* :</label>
+                                {{ creation_entreprise.Siret(class_="form-control" ) }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="Adresse" class="form-label "> Adresse* :</label>
+                                {{ creation_entreprise.Adresse(class_="form-control" ) }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="Code" class="form-label "> Code Postal* :</label>
+                                {{ creation_entreprise.Code(class_="form-control" ) }}
+                        </div><div class="mb-3">
+                            <label for="Ville" class="form-label "> Ville* :</label>
+                                {{ creation_entreprise.Ville(class_="form-control" ) }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="Description" class="form-label "> Description :</label>
+                                {{ creation_entreprise.Description(class_="form-control" ) }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="URL" class="form-label "> URL :</label>
+                                {{ creation_entreprise.URL(class_="form-control" ) }}
+                        </div>
+                        <input type="submit">
+                    </form>
                 </div>
-                <div class="mb-3">
-                    <label for="Siret" class="form-label "> Siret* :</label>
-                        {{ creation_entreprise.Siret }}
-                </div>
-                <div class="mb-3">
-                    <label for="Adresse" class="form-label "> Adresse* :</label>
-                        {{ creation_entreprise.Adresse }}
-                </div>
-                <div class="mb-3">
-                    <label for="Code" class="form-label "> Code Postal* :</label>
-                        {{ creation_entreprise.Code }}
-                </div><div class="mb-3">
-                    <label for="Ville" class="form-label "> Ville* :</label>
-                        {{ creation_entreprise.Ville }}
-                </div>
-                <div class="mb-3">
-                    <label for="Description" class="form-label "> Description :</label>
-                        {{ creation_entreprise.Description }}
-                </div>
-                <div class="mb-3">
-                    <label for="URL" class="form-label "> URL :</label>
-                        {{ creation_entreprise.URL }}
-                </div>
-                <input type="submit">
-            </form>
+            </div>
         </div>
     </div>
 </body>

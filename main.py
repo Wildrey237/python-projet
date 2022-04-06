@@ -6,7 +6,7 @@ from Connexion import connexion
 from Entreprise import make_entreprise, modify_entreprise
 from MakeFacture import makeFacture
 from Session import session_verification
-from Test import page_test
+from Homepage import page_test
 
 app = Flask(__name__, template_folder='templates')
 app.config['SECRET_KEY'] = 'C2HWGVoMGfNTBsrYQg8EcMrdTimkZfAb'
@@ -19,8 +19,8 @@ def connexion_test():
 
 
 # Page de test pour les variables de sessions de 60 minutes
-@app.route('/test', methods=['GET', 'POST'])
-def test():
+@app.route('/Homepage', methods=['GET', 'POST'])
+def Homepage():
     return session_verification(page_test())
 
 @app.route('/Client-<Email>', methods=['GET', 'POST'])

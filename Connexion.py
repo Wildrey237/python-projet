@@ -19,7 +19,7 @@ def connexion():
             if test["Password"] == f'{Password}':
                 session['duree'] = time.time() + 3600  # Durée en seconde de la session
                 print('bv')
-                result = redirect(url_for('test'))
+                result = redirect(url_for('Homepage'))
             else:
                 result = redirect(url_for('connexion_test'))
     return result
