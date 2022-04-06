@@ -2,6 +2,7 @@
 {% block title %}Entreprise{% endblock %}
 
 {% block entreprise %}
+
 <form method="post">
     {{ formulaire_modification_entreprise.csrf_token}}
     <div class="mb-3">
@@ -39,29 +40,28 @@
 </form>
 {% endblock %}
 {% block client_assoc %}
-{% for contact in informations_contact %}
-<form method="post">
-    {{ formulaire_facture.csrf_token}}
-    <div class="row d-flex align-items-center">
-        <div class="col-3">
-            <span class="input-group-text">{{ contact.Nom }}</span>
-        </div>
-        <div class="col-3">
-            <span class="input-group-text">{{ contact.Prenom }}</span>
-        </div>
-        <div class="col-3">
-            {{ formulaire_facture.Email(value=contact.Email, class_='form-control') }}
-        </div>
-        <div class="col-2">
-            <input type="submit" name="contact" class="btn btn-primary" value="Acceder">
-        </div>
-        <div class="col-2">
-            <input type="submit" name="contact" value='Visualiser facture' class="btn btn-primary">
-        </div>
-        <div class="col-2">
-            <input type="submit" name="contact" value='Creer facture' class="btn btn-primary">
-        </div>
-    </div>
-</form>
-{% endfor %}
+<div id="liste_client" class="table-responsive">
+    <table class="table">
+        {{ formulaire_facture.csrf_token}}
+        <thead>
+            <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Mail</th>
+            </tr>
+        </thead>
+        {% for contact in informations_contact %}
+        <tbody>
+            <tr>
+                <td>{{ contact.Nom}}</td>
+                <td>{{ contact.Prenom}}</td>
+                <td>{{ contact.Email }}</td>
+                <td><a href="/Client-{{ contact.Email }}">Information</td>
+                <td><a href="/facture-{{ contact.Email }}-{{ informations_entreprise.Siret }}">Visualiser la facture</td>
+                <td><a href="/pdf-{{ contact.Email }}-{{ informations_entreprise.Siret }}" class="button"><i class="fa fa-download"></i>Télécharger PDF</a></td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
 {% endblock %}

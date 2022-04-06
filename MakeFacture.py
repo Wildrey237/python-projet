@@ -26,8 +26,10 @@ def infoFacture():
     return facture
 
 
-def makeFacture(Email_contact, Siret):
+def make_fature(Email_contact, Siret):
     user = takeClient(Email_contact)
     facture = infoFacture()
     entreprise = takeEntreprise(Siret)
     return render_template('factures.html', users=user, facture=facture, entreprise = entreprise)
+
+

@@ -4,9 +4,10 @@ from Client import make_client, modify_client
 from Commentaire import make_commentaire
 from Connexion import connexion
 from Entreprise import make_entreprise, modify_entreprise
-from MakeFacture import makeFacture
+from MakeFacture import make_fature
 from Session import session_verification
 from Homepage import page_test
+from MakePDF import facture_final
 
 app = Flask(__name__, template_folder='templates')
 app.config['SECRET_KEY'] = 'C2HWGVoMGfNTBsrYQg8EcMrdTimkZfAb'
@@ -60,7 +61,12 @@ def ajoutCommentaire(telephone):
 @app.route('/facture-<Email_contact>-<Siret>', methods=['GET', 'POST'])
 def Facture(Email_contact, Siret):
     Siret_int = float(Siret)
-    return makeFacture(Email_contact, Siret_int)
+    return make_fature(Email_contact, Siret_int)
+
+@app.route('/pdf-<Email_contact>-<Siret>', methods=['GET', 'POST'])
+def pdf(Email_contact, Siret):
+    Siret_int = float(Siret)
+    return facture_final(Email_contact, Siret_int)
 
 
 if __name__ == '__main__':

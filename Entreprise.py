@@ -15,6 +15,7 @@ def make_entreprise():
         Ville = request.form.get('Ville')
         Description = request.form.get('Description')
         URL = request.form.get('URL')
+        Siret = int(Siret)
 
         ent_refs = db.collection('Entreprise').where('Siret', '==', Siret)
         refs = ent_refs.get()
@@ -36,7 +37,7 @@ def make_entreprise():
                     'URL': URL,
                 }
             )
-        return redirect(url_for('test'))
+        return redirect(url_for('Homepage'))
     return render_template('creationEntreprise.html', creation_entreprise=creation_entreprise)
 
 
@@ -79,9 +80,10 @@ def modify_entreprise(Siret):
                     'URL': URL,
                 }
             )
+            return redirect(url_for('Homepage'))
         elif request.form['valider'] == 'Supprimer':
             db.collection('Entreprise').document(id).delete()
-            return redirect(url_for('test'))
+            return redirect(url_for('Homepage'))
     elif formulaire_facture.validate_on_submit():
         Email = request.form.get('Email')
         if request.form['contact'] == 'Acceder':
