@@ -2,12 +2,13 @@
 {% block content %} Home Page {% endblock %}
 
 {% block table_entreprise %}
-<form method="POST">
-    {{ formulaire_recherche.csrf_token }}
-    {{ formulaire_recherche.recherche }}
-    <input type="submit"  value="Rechercher (Nom)">
-</form>
 <div id="liste_entreprise" class="table-responsive">
+    <form method="POST">
+        {{ formulaire_recherche.csrf_token }}
+        {{ formulaire_recherche.recherche }}
+        <input type="submit"  value="Rechercher (Nom)">
+    </form>
+    <br>
     <table class="table">
         {{ formulaire_acces_entreprise.csrf_token }}
         <thead>
@@ -16,6 +17,7 @@
             <th>Siège Social</th>
             <th>Description</th>
             <th>Numéro Siret</th>
+            <th>Nombre de facture</th>
             </tr>
         </thead>
         {% for entreprise in liste_entreprise %}
