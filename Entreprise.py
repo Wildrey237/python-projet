@@ -15,6 +15,7 @@ def make_entreprise():
         Ville = request.form.get('Ville')
         Description = request.form.get('Description')
         URL = request.form.get('URL')
+        Siret = int(Siret)
 
         ent_refs = db.collection('Entreprise').where('Siret', '==', Siret)
         refs = ent_refs.get()
