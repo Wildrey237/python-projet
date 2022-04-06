@@ -3,41 +3,43 @@
 
 {% block form_client %}
 <body>
-    <div class="back-form">
-        <div class="h-100 d-flex align-items-start">
-            <div class="container w-25 h-50">
-                <form method="POST">
-                    {{ creation_client.csrf_token }}
-                        <div class="mb-3">
-                            <label for="Nom" class="form-label "> Nom* :</label>
-                                {{ creation_client.Nom }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="Prenom" class="form-label "> Prenom* :</label>
-                                {{ creation_client.Prenom }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="Email" class="form-label "> Email* :</label>
-                                {{ creation_client.Email }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="Entreprise" class="form-label "> Entreprise* :</label>
-                                {{ creation_client.Entreprise }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="Poste" class="form-label "> Poste :</label>
-                                {{ creation_client.Poste }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="Satut" class="form-label "> Statut :</label>
-                                {{ creation_client.Statut }}
-                        </div>
-                        <div class="mb-3">
-                            <label for="Telephone" class="form-label "> Téléphone* :</label>
-                                {{ creation_client.Telephone }}
-                        </div>
-                    <input type="submit">
-                </form>
+    <div class="row h-100">
+        <div class="col-md-7 h-100">
+            <div class="h-100 d-flex align-items-center">
+                <div class="container w-50 ">
+                    <form method="POST">
+                        {{ creation_client.csrf_token }}
+                            <div class="mb-3">
+                                <label for="Nom" class="form-label "> Nom* :</label>
+                                    {{ creation_client.Nom(class_="form-control" ) }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="Prenom" class="form-label "> Prenom* :</label>
+                                    {{ creation_client.Prenom(class_="form-control" ) }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="Email" class="form-label "> Email* :</label>
+                                    {{ creation_client.Email(class_="form-control" ) }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="Entreprise" class="form-label "> Entreprise* :</label>
+                                    {{ creation_client.Entreprise(class_="form-control" ) }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="Poste" class="form-label "> Poste :</label>
+                                    {{ creation_client.Poste(class_="form-control" ) }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="Satut" class="form-label "> Statut :</label>
+                                    {{ creation_client.Statut(class_="form-control" ) }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="Telephone" class="form-label "> Téléphone* :</label>
+                                    {{ creation_client.Telephone(class_="form-control" ) }}
+                            </div>
+                        <input type="submit">
+                    </form>
+                </div>
             </div>
         </div>
     </div>
