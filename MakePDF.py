@@ -1,7 +1,6 @@
 import pdfkit
 from datetime import datetime
 from Connexion import db
-import weasyprint
 from flask import redirect, url_for, render_template, request
 
 
@@ -17,7 +16,7 @@ class PdfGenerator:
         self.date = datetime.now()
         id = str(self.date.strftime("%Y-%m-%d %H:%M:%S"))
         self.id_facture = f"facture n°{id}"
-        pdf = weasyprint.HTML(template).write_pdf(f'Facture/{self.id_facture}.pdf')
+        pdf = pdfkit.from_url(template, f'Facture/{self.id_facture}.pdf')
         return pdf
 
     def take(self, email, siret):
