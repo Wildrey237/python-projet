@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash, request, Blueprint, make_response, session
+from flask import render_template
 from Client import Client
 from datetime import datetime
 from Entreprise import Entreprise
@@ -26,10 +26,10 @@ def infoFacture():
     return facture
 
 
-def make_fature(Email_contact, Siret):
-    user = takeClient(Email_contact)
+def make_fature(email_contact, siret):
+    user = takeClient(email_contact)
     facture = infoFacture()
-    entreprise = takeEntreprise(Siret)
+    entreprise = takeEntreprise(siret)
     return render_template('factures.html', users=user, facture=facture, entreprise = entreprise)
 
 

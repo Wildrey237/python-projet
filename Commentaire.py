@@ -4,12 +4,6 @@ from Connexion import db
 from Formulaires import FormulaireAjoutCommentaire
 
 
-class Commentaire(object):
-
-    def __init__(self):
-        pass
-
-
 def info_client(telephone):
     telephone = int(telephone)
     refs = db.collection('Client').where('Telephone', '==', telephone)

@@ -1,5 +1,4 @@
 from flask import Flask
-
 from Client import make_client, modify_client
 from Commentaire import make_commentaire
 from Connexion import connexion
@@ -37,7 +36,7 @@ def client(Email):
 
 # Page d'ajout d'une entreprise dans la BDD
 @app.route('/ajout-entreprise', methods=['GET', 'POST'])
-def ajoutEntreprise():
+def ajout_entreprise():
     return session_verification(make_entreprise())
 
 
@@ -48,25 +47,26 @@ def entreprise(siret):
 
 # Page d'ajout d'un client dans la BDD
 @app.route('/ajout-client', methods=['GET', 'POST'])
-def ajoutClient():
+def ajout_client():
     return session_verification(make_client())
 
 
 # Page d'ajout de commentaire sur un client (personne physique) existant
 @app.route('/ajout-commentaire-<telephone>', methods=['GET', 'POST'])
-def ajoutCommentaire(telephone):
+def ajout_commentaire(telephone):
     return session_verification(make_commentaire(telephone))
 
 
 @app.route('/facture-<Email_contact>-<Siret>', methods=['GET', 'POST'])
-def Facture(Email_contact, Siret):
-    Siret_int = float(Siret)
-    return make_fature(Email_contact, Siret_int)
+def Facture(email_contact, s):
+    siret_int = float(s)
+    return make_fature(email_contact, siret_int)
+
 
 @app.route('/pdf-<Email_contact>-<Siret>', methods=['GET', 'POST'])
-def pdf(Email_contact, Siret):
-    Siret_int = float(Siret)
-    return facture_final(Email_contact, Siret_int)
+def pdf(email_contact, siret):
+    siret_int = float(siret)
+    return facture_final(email_contact, siret_int)
 
 
 if __name__ == '__main__':

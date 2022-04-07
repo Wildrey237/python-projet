@@ -42,9 +42,9 @@ def make_entreprise():
     return result
 
 
-def modify_entreprise(Siret):
-    Siret = int(Siret)
-    users_ref = db.collection(u'Entreprise').where(u'Siret', u'==', Siret)
+def modify_entreprise(siret):
+    siret = int(siret)
+    users_ref = db.collection(u'Entreprise').where(u'Siret', u'==', siret)
     docs = users_ref.get()
     for doc in docs:
         informations_entreprise = doc.to_dict()
@@ -60,28 +60,28 @@ def modify_entreprise(Siret):
                              formulaire_modification_entreprise=formulaire_modification_entreprise,
                              informations_contact=informations_contact, formulaire_facture=formulaire_facture)
     if formulaire_modification_entreprise.validate_on_submit():
-        Nom = request.form.get('Nom')
-        Siret = request.form.get('Siret')
-        Adresse = request.form.get('Adresse')
-        Code = request.form.get('Code')
-        Ville = request.form.get('Ville')
-        Description = request.form.get('Description')
-        URL = request.form.get('URL')
-        Siret = int(Siret)
-        ref_entreprise = db.collection('Entreprise').where(u'Siret', u'==', Siret)
+        nom = request.form.get('Nom')
+        siret = request.form.get('Siret')
+        adresse = request.form.get('Adresse')
+        code = request.form.get('Code')
+        ville = request.form.get('Ville')
+        description = request.form.get('Description')
+        url = request.form.get('URL')
+        siret = int(siret)
+        ref_entreprise = db.collection('Entreprise').where(u'Siret', u'==', siret)
         docs = ref_entreprise.get()
         for doc in docs:
             id = doc.id
         if request.form['valider'] == 'Modifier':
             db.collection('Entreprise').document(id).set(
                 {
-                    'Nom': Nom,
-                    'Siret': Siret,
-                    'Adresse': Adresse,
-                    'Code': Code,
-                    'Ville': Ville,
-                    'Description': Description,
-                    'URL': URL,
+                    'Nom': nom,
+                    'Siret': siret,
+                    'Adresse': adresse,
+                    'Code': code,
+                    'Ville': ville,
+                    'Description': description,
+                    'URL': url,
                 }
             )
             result = redirect(url_for('Homepage'))
@@ -89,23 +89,23 @@ def modify_entreprise(Siret):
             db.collection('Entreprise').document(id).delete()
             result = redirect(url_for('Homepage'))
     elif formulaire_facture.validate_on_submit():
-        Email = request.form.get('Email')
+        email = request.form.get('Email')
         if request.form['contact'] == 'Acceder':
-            result = redirect(f'/Client-{Email}')
+            result = redirect(f'/Client-{email}')
         elif request.form['contact'] == 'Visualiser facture':
-            result = redirect(f'/facture-{Email}-{Siret}')
+            result = redirect(f'/facture-{email}-{siret}')
         elif request.form['contact'] == 'Creer facture':
-            enregistre_PDF(Email, Siret)
-            result = redirect(f'/facture-{Email}-{Siret}')
+            enregistre_PDF(email, siret)
+            result = redirect(f'/facture-{email}-{siret}')
     return result
 
 
 class Entreprise():
-    def take_entreprise(self, Siret: int = None):
-        if Siret is None:
+    def take_entreprise(self, siret: int = None):
+        if siret is None:
             docs = db.collection('Entreprise')
         else:
-            docs = db.collection('Entreprise').where(u'Siret', u'==', Siret)
+            docs = db.collection('Entreprise').where(u'Siret', u'==', siret)
         docs = docs.get()
         entreprise = []
         for doc in docs:
@@ -120,12 +120,12 @@ class Entreprise():
         self.url = entreprise['URL']
         self.description = entreprise['Description']
 
-    def __init__(self, Nom: str = None, Siret: int = None, Adresse: str = None, Code: int = None,
-                 Ville: str = None, URL: str = None, Description: str = None):
-        self.nom = Nom
-        self.siret = Siret
-        self.adresse = Adresse
-        self.code = Code
-        self.ville = Ville
-        self.url = URL
-        self.description = Description
+    def __init__(self, nom: str = None, siret: int = None, adresse: str = None, code: int = None,
+                 ville: str = None, url: str = None, description: str = None):
+        self.nom = nom
+        self.siret = siret
+        self.adresse = adresse
+        self.code = code
+        self.ville = ville
+        self.url = url
+        self.description = description
