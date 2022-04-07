@@ -132,7 +132,7 @@ def modify_client(Email):
             )
         elif request.form['valider'] == 'Supprimer':
             db.collection('Client').document(id).delete()
-            return redirect(url_for('test'))
+            return redirect(url_for('Homepage'))
         elif request.form['valider'] == f'Ajouter un commentaire':
             return redirect(f'/ajout-commentaire-{Telephone}')
 

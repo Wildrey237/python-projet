@@ -24,7 +24,7 @@ class FormulaireModificationClient(FlaskForm):
     Nom = StringField(validators=[DataRequired()])
     Poste = StringField(validators=[DataRequired()])
     Prenom = StringField(validators=[DataRequired()])
-    Statut = SelectField(validators=[DataRequired()])
+    Statut = SelectField(validators=[DataRequired()], choices=['Actif', 'Inactif'])
     Telephone = IntegerField(validators=[DataRequired()])
 
 
