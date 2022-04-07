@@ -36,17 +36,23 @@
 </form>
 {% endblock %}
 {% block info_com %}
-{% for commentaire in informations_commentaire %}
-    <div class="row w-75 d-flex align-items-center">
-         <div class="col-3">
-            <span class="input-group-text">{{ commentaire.Nom }}</span>
-         </div>
-        <div class="col-6">
-            <span class="input-group-text">{{ commentaire.Date_de_creation }}</span>
-        </div>
-        <div class="col-3">
-            <span class="input-group-text">{{ commentaire.Commentaire }}</span>
-        </div>
-     </div>
+<table class="table">
+    <thead>
+        <tr>
+        <th>Mail Admin</th>
+        <th>Date</th>
+        <th>Commentaire</th>
+        </tr>
+    </thead>
+    {% for commentaire in informations_commentaire %}
+    <tbody>
+        <tr>
+          <td>{{ commentaire.Nom }}</td>
+          <td>{{ commentaire.Date_de_creation }}</td>
+          <td>{{ commentaire.Commentaire }}</td>
+        </tr>
+    </tbody>
 {% endfor %}
+</table>
+
 {% endblock %}
