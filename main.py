@@ -64,7 +64,7 @@ def Facture(email_contact, siret):
 
 
 
-@app.route('/pdf-<Email_contact>-<Siret>', methods=['GET', 'POST'])
+@app.route('/pdf-<email_contact>-<siret>', methods=['GET', 'POST'])
 def pdf(email_contact, siret):
     siret_int = float(siret)
     return facture_final(email_contact, siret_int)

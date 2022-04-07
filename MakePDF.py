@@ -1,7 +1,7 @@
 import pdfkit
 from datetime import datetime
 from Connexion import db
-from flask import redirect, url_for, render_template, request
+from flask import redirect
 
 
 class PdfGenerator:
