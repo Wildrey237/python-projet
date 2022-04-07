@@ -6,7 +6,7 @@ from Entreprise import Entreprise
 
 def takeClient(info):
     user = Client()
-    user.takeClient(info)
+    user.take_client(info)
     post = user
     return post
 

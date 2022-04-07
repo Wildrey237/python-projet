@@ -1,4 +1,4 @@
-from flask import request, render_template, url_for, flash
+from flask import request, render_template, url_for
 from werkzeug.utils import redirect
 from Connexion import db
 from Formulaires import FormulaireCreationEntreprise, FormulaireFacture
@@ -7,38 +7,39 @@ from MakePDF import enregistre_PDF
 
 def make_entreprise():
     creation_entreprise = FormulaireCreationEntreprise()
+    result = render_template('creationEntreprise.html', creation_entreprise=creation_entreprise)
     if creation_entreprise.validate_on_submit():
-        Nom = request.form.get('Nom')
-        Siret = request.form.get('Siret')
-        Adresse = request.form.get('Adresse')
-        Code = request.form.get('Code')
-        Ville = request.form.get('Ville')
-        Description = request.form.get('Description')
-        URL = request.form.get('URL')
-        Siret = int(Siret)
+        nom = request.form.get('Nom')
+        siret = request.form.get('Siret')
+        adresse = request.form.get('Adresse')
+        code = request.form.get('Code')
+        ville = request.form.get('Ville')
+        description = request.form.get('Description')
+        url = request.form.get('URL')
+        siret = int(siret)
 
-        ent_refs = db.collection('Entreprise').where('Siret', '==', Siret)
+        ent_refs = db.collection('Entreprise').where('Siret', '==', siret)
         refs = ent_refs.get()
 
         if refs:
             for ref in refs:
                 check = ref.to_dict()
-                if check['Siret'] == Siret:
+                if check['Siret'] == siret:
                     return redirect(url_for('test'))
         else:
             db.collection('Entreprise').add(
                 {
-                    'Nom': Nom,
-                    'Siret': Siret,
-                    'Adresse': Adresse,
-                    'Code': Code,
-                    'Ville': Ville,
-                    'Description': Description,
-                    'URL': URL,
+                    'Nom': nom,
+                    'Siret': siret,
+                    'Adresse': adresse,
+                    'Code': code,
+                    'Ville': ville,
+                    'Description': description,
+                    'URL': url,
                 }
             )
-        return redirect(url_for('Homepage'))
-    return render_template('creationEntreprise.html', creation_entreprise=creation_entreprise)
+        result = redirect(url_for('Homepage'))
+    return result
 
 
 def modify_entreprise(Siret):
@@ -55,6 +56,9 @@ def modify_entreprise(Siret):
         informations_contact.append(tt)
     formulaire_modification_entreprise = FormulaireCreationEntreprise()
     formulaire_facture = FormulaireFacture()
+    result = render_template('entreprise.html', informations_entreprise=informations_entreprise,
+                             formulaire_modification_entreprise=formulaire_modification_entreprise,
+                             informations_contact=informations_contact, formulaire_facture=formulaire_facture)
     if formulaire_modification_entreprise.validate_on_submit():
         Nom = request.form.get('Nom')
         Siret = request.form.get('Siret')
@@ -80,30 +84,20 @@ def modify_entreprise(Siret):
                     'URL': URL,
                 }
             )
-            return redirect(url_for('Homepage'))
+            result = redirect(url_for('Homepage'))
         elif request.form['valider'] == 'Supprimer':
-            facture_ref = db.collection('Facture').where(u'SiretEntreprise', u'==', Siret)
-            factures = facture_ref.get()
-            nb_facture = len(factures)
-            if nb_facture > 0:
-                flash("Impossible de supprimer l'entreprise car vous avez des factures avec")
-                return redirect('/Homepage')
-            else:
-                db.collection('Entreprise').document(id).delete()
-                return redirect(url_for('Homepage'))
+            db.collection('Entreprise').document(id).delete()
+            result = redirect(url_for('Homepage'))
     elif formulaire_facture.validate_on_submit():
         Email = request.form.get('Email')
         if request.form['contact'] == 'Acceder':
-            return redirect(f'/Client-{Email}')
+            result = redirect(f'/Client-{Email}')
         elif request.form['contact'] == 'Visualiser facture':
-            return redirect(f'/facture-{Email}-{Siret}')
+            result = redirect(f'/facture-{Email}-{Siret}')
         elif request.form['contact'] == 'Creer facture':
             enregistre_PDF(Email, Siret)
-            return redirect(f'/facture-{Email}-{Siret}')
-
-    return render_template('entreprise.html', informations_entreprise=informations_entreprise,
-                           formulaire_modification_entreprise=formulaire_modification_entreprise,
-                           informations_contact=informations_contact, formulaire_facture=formulaire_facture)
+            result = redirect(f'/facture-{Email}-{Siret}')
+    return result
 
 
 class Entreprise():

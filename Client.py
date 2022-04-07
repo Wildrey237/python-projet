@@ -19,7 +19,7 @@ class Client:
             users.append(post)
         return Client(*users[0])
 
-    def takeClient(self, Email_contact: str = None):
+    def take_client(self, Email_contact: str = None):
         if Email_contact is None:
             docs = db.collection('Client')
         else:
@@ -107,6 +107,7 @@ def modify_client(Email):
         tt = commentaire.to_dict()
         informations_commentaire.append(tt)
     formulaire_modification_client = FormulaireModificationClient()
+    result = render_template('client.html', informations_client=informations_client,formulaire_modification_client=formulaire_modification_client,informations_commentaire=informations_commentaire)
     if formulaire_modification_client.validate_on_submit():
         Email = request.form.get('Email')
         Nom = request.form.get('Nom')
@@ -132,10 +133,7 @@ def modify_client(Email):
             )
         elif request.form['valider'] == 'Supprimer':
             db.collection('Client').document(id).delete()
-            return redirect(url_for('Homepage'))
+            result = redirect(url_for('Homepage'))
         elif request.form['valider'] == f'Ajouter un commentaire':
-            return redirect(f'/ajout-commentaire-{Telephone}')
-
-    return render_template('client.html', informations_client=informations_client,
-                           formulaire_modification_client=formulaire_modification_client,
-                           informations_commentaire=informations_commentaire)
+            result = redirect(f'/ajout-commentaire-{Telephone}')
+    return result
