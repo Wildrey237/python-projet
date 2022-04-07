@@ -3,7 +3,7 @@ from Client import make_client, modify_client
 from Commentaire import make_commentaire
 from Connexion import connexion
 from Entreprise import make_entreprise, modify_entreprise
-from MakeFacture import make_fature
+from MakeFacture import make_facture
 from Session import session_verification
 from Homepage import page_test
 from MakePDF import facture_final
@@ -60,7 +60,7 @@ def ajout_commentaire(telephone):
 @app.route('/facture-<Email_contact>-<Siret>', methods=['GET', 'POST'])
 def Facture(email_contact, s):
     siret_int = float(s)
-    return make_fature(email_contact, siret_int)
+    return make_facture(email_contact, siret_int)
 
 
 @app.route('/pdf-<Email_contact>-<Siret>', methods=['GET', 'POST'])
