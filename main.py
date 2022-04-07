@@ -57,10 +57,11 @@ def ajout_commentaire(telephone):
     return session_verification(make_commentaire(telephone))
 
 
-@app.route('/facture-<Email_contact>-<Siret>', methods=['GET', 'POST'])
-def Facture(email_contact, s):
-    siret_int = float(s)
+@app.route('/facture-<email_contact>-<siret>', methods=['GET', 'POST'])
+def Facture(email_contact, siret):
+    siret_int = float(siret)
     return make_facture(email_contact, siret_int)
+
 
 
 @app.route('/pdf-<Email_contact>-<Siret>', methods=['GET', 'POST'])
