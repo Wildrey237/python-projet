@@ -8,6 +8,7 @@ db = connect_BD()
 
 def connexion():
     session['duree'] = 0
+    session['Email'] = None
     connexion_formulaire = ConnexionFormulaire()
     result = render_template('index.html', connexion_formulaire=connexion_formulaire)
     if connexion_formulaire.validate_on_submit():

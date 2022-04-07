@@ -2,7 +2,7 @@
 {% block title %}Ajoutez une commentaire{% endblock %}
 
 {% block commentaire %}
-<p>{{ test }}</p>
+<p>{{ nom_client }}</p>
 <form method="POST">
     {{ commentaire.csrf_token }}
     {{ commentaire.nom }}
