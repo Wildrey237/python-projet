@@ -91,7 +91,7 @@ def make_client():
     if creation_client.validate_on_submit():
         client = creation_client.to_model()
         client.save()
-        result = redirect(url_for('test'))
+        result = redirect(url_for('Homepage'))
     return result
 
 

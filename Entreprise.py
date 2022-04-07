@@ -1,4 +1,4 @@
-from flask import request, render_template, url_for
+from flask import request, render_template, url_for, flash
 from werkzeug.utils import redirect
 from Connexion import db
 from Formulaires import FormulaireCreationEntreprise, FormulaireFacture
@@ -82,8 +82,15 @@ def modify_entreprise(Siret):
             )
             return redirect(url_for('Homepage'))
         elif request.form['valider'] == 'Supprimer':
-            db.collection('Entreprise').document(id).delete()
-            return redirect(url_for('Homepage'))
+            facture_ref = db.collection('Facture').where(u'SiretEntreprise', u'==', Siret)
+            factures = facture_ref.get()
+            nb_facture = len(factures)
+            if nb_facture > 0:
+                flash("Impossible de supprimer l'entreprise car vous avez des factures avec")
+                return redirect('/Homepage')
+            else:
+                db.collection('Entreprise').document(id).delete()
+                return redirect(url_for('Homepage'))
     elif formulaire_facture.validate_on_submit():
         Email = request.form.get('Email')
         if request.form['contact'] == 'Acceder':
