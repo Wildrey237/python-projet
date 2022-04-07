@@ -5,8 +5,6 @@
 <p>{{ nom_client }}</p>
 <form method="POST">
     {{ commentaire.csrf_token }}
-    {{ commentaire.nom }}
-    {{ commentaire.telephone }}
     {{ commentaire.Commentaire }}
     <input type="submit">
 </form>
